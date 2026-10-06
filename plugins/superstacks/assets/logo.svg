@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Superstacks">
+  <rect width="128" height="128" rx="24" fill="#0B1F33"/>
+  <rect x="24" y="72" width="80" height="20" rx="4" fill="#2EC4B6"/>
+  <rect x="32" y="54" width="64" height="16" rx="4" fill="#F4F1DE"/>
+  <rect x="40" y="36" width="48" height="16" rx="4" fill="#FF9F1C"/>
+</svg>

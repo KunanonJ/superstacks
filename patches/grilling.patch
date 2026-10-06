@@ -1,0 +1,11 @@
+--- a/grilling/SKILL.md	2026-10-06 08:44:32.554302254 +0000
++++ b/grilling/SKILL.md	2026-10-06 08:58:56.498986309 +0000
+@@ -1,6 +1,7 @@
+ ---
+ name: grilling
+-description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
++description: Use when the user wants to stress-test a plan, decision, or idea, or uses any grill trigger phrases.
++license: MIT
+ ---
+ 
+ Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.

@@ -1,0 +1,55 @@
+--- a/writing-plans/SKILL.md	2026-10-06 08:44:32.034304333 +0000
++++ b/writing-plans/SKILL.md	2026-10-06 08:58:56.498986309 +0000
+@@ -1,6 +1,7 @@
+ ---
+ name: writing-plans
+ description: Use when you have a spec or requirements for a multi-step task, before touching code
++license: MIT
+ ---
+ 
+ # Writing Plans
+@@ -11,10 +12,9 @@
+ 
+ **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
+ 
+-**Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
++**Context:** If working in an isolated worktree, the user already created it.
+ 
+-**Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
+-- (User preferences for plan location override this default)
++**Save plans to:** the pull request body (a `## Plan` section). Do not write plan files under `docs/`. User preferences for plan location override this default.
+ 
+ ## Scope Check
+ 
+@@ -56,7 +56,7 @@
+ ```markdown
+ # [Feature Name] Implementation Plan
+ 
+-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
++> Steps use checkbox (`- [ ]`) syntax for tracking.
+ 
+ **Goal:** [One sentence describing what this builds]
+ 
+@@ -186,7 +186,7 @@
+ 
+ **When no execution method has already been supplied:**
+ 
+-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Please review the plan. Which execution approach would you prefer?**
++**"Plan complete in the pull request body. Please review the plan. Which execution approach would you prefer?**
+ 
+ - **Subagent-driven** - A fresh subagent implements each task and a fresh reviewer checks it before the next one starts, then a whole-branch review at the end. Most thorough; costs a fresh context per task and per review.
+ - **Native** - I implement every task myself in this session, the way this harness runs work, then one fresh reviewer on the most capable model checks the whole branch. Cheapest and fastest; no independent review until the end. Runs well with a mid-tier session model, since the plan carries the design.
+@@ -195,10 +195,8 @@
+ 
+ **When an execution method has already been supplied:**
+ 
+-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Please review the plan. Does it capture what you want?"**
++**"Plan complete in the pull request body. Please review the plan. Does it capture what you want?"**
+ 
+-**If Subagent-driven chosen:**
+-- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
++**If Subagent-driven chosen:** implement each task with a fresh subagent and a fresh reviewer before the next task.
+ 
+-**If Native chosen:**
+-- **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
++**If Native chosen:** implement every task in this session, then one fresh reviewer on the whole branch.

@@ -1,5 +1,18 @@
+[project]
+name = "superstacks"
+version = "6.0.0"
+description = "Lean MIT skill stack for coding agents."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
 [tool.ruff]
-exclude = ["skills"]
+target-version = "py312"
+line-length = 120
+exclude = ["plugins", "patches"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

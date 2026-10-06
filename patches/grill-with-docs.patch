@@ -1,0 +1,11 @@
+--- a/grill-with-docs/SKILL.md	2026-10-06 08:44:32.550302271 +0000
++++ b/grill-with-docs/SKILL.md	2026-10-06 08:58:56.498986309 +0000
+@@ -1,6 +1,7 @@
+ ---
+ name: grill-with-docs
+-description: A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.
++description: Use when grilling a plan or design that should also produce ADRs and a glossary as you go.
++license: MIT
+ disable-model-invocation: true
+ ---
+ 

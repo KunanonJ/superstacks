@@ -1,0 +1,11 @@
+--- a/diagnosing-bugs/SKILL.md	2026-10-06 08:44:32.550302271 +0000
++++ b/diagnosing-bugs/SKILL.md	2026-10-06 08:58:56.498986309 +0000
+@@ -1,6 +1,7 @@
+ ---
+ name: diagnosing-bugs
+-description: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
++description: Use when the user says diagnose or debug this, or reports something broken, throwing, failing, or slow.
++license: MIT
+ ---
+ 
+ # Diagnosing Bugs

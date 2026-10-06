@@ -1,0 +1,20 @@
+{
+  "name": "superstacks",
+  "interface": {
+    "displayName": "Superstacks"
+  },
+  "plugins": [
+    {
+      "name": "superstacks",
+      "source": {
+        "source": "local",
+        "path": "./plugins/superstacks"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+name: Feature request
+description: Propose a change to Superstacks
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: What should change, and why?
+    validations:
+      required: true
+  - type: textarea
+    id: skills
+    attributes:
+      label: Skills affected
+      description: Which skill folders would change?
+    validations:
+      required: false
