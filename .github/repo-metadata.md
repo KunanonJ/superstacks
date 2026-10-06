@@ -1,12 +1,12 @@
 # GitHub repository metadata
 
-Suggested GitHub About fields after the repo rename to `superstacks`.
+Suggested GitHub About fields for [`KunanonJ/superstacks`](https://github.com/KunanonJ/superstacks).
 
 ## Description
 
-Lean MIT skill stack for coding agents: plans, TDD, verification, review, PRs, debugging, and ticket pipelines.
+Lean MIT skill stack for coding agents: plans, TDD, verify-loop, constraints, review, PRs, and ticket pipelines.
 
-(110 characters)
+(under 120 characters)
 
 ## Homepage
 
@@ -29,3 +29,7 @@ https://github.com/KunanonJ/superstacks
 - domain-modeling
 - safety
 - draft-pr
+
+## Social preview
+
+Upload `.github/social-preview.png` (1280×640) by hand in Settings → General → Social preview. This repository does not set that image through the API.

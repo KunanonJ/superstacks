@@ -1,0 +1,45 @@
+# Skill trigger phrases for eval harnesses.
+
+skills:
+  verify-loop:
+    - before writing code define a deterministic check
+    - run the acceptance check red then green
+    - paste VERIFY_PASS from the verify runner
+    - playwright snapshot console error check without installing
+  verification-before-completion:
+    - claim the bug is fixed
+    - tests pass now
+    - ready to open the PR
+  ticket-pipeline:
+    - run this ticket from discovery to a draft PR
+    - which pipeline steps have evidence
+  pr:
+    - write the pull request body
+    - check the PR body sections
+  mistake-to-constraint:
+    - this mistake keeps happening
+    - turn the repeated error into a lint rule
+    - add a CONSTRAINTS.md row
+  steer-miner:
+    - mine these agent transcripts for repeated corrections
+    - propose new skills from chat logs
+  intake-triage:
+    - triage this batch of bug reports
+    - write ticket briefs for the coordinator
+  gardening:
+    - small dead code cleanup
+    - lint debt one concern per PR
+  sample-review:
+    - sample five merged PRs from today
+    - propose environment tightenings not per-PR comments
+  workflow-profile:
+    - what is trust_level
+    - who merges two-way door PRs
+  interrogate:
+    - money movement change
+    - schema migration review
+  how:
+    - explain how this subsystem works before we change it
+  test-driven-development:
+    - failing test first
+    - red green refactor

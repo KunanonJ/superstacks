@@ -1,6 +1,6 @@
 ---
 name: workflow-profile
-description: Use when starting a ticket or choosing merge, review, and pipeline order. Generic ticket refs, merge owner, and skill sequence.
+description: Use when starting a ticket or choosing merge, review, trust_level, and pipeline order. Generic ticket refs, merge owner, and skill sequence.
 license: MIT
 disable-model-invocation: true
 ---
@@ -16,13 +16,29 @@ Generic team conventions. Override with repo docs when they exist. `safety-overr
 
 ## Merge owner
 
-The human who asked for the work (or the user on the ticket) is the merge owner. The agent opens a **draft** PR and stops. The merge owner reviews, marks ready, and merges.
+The human who asked for the work (or the user on the ticket) is the merge owner unless `trust_level` says otherwise. The implementing agent opens a **draft** PR and stops.
+
+## Trust level
+
+Set `trust_level` here or in repo docs. Default: `1`.
+
+```text
+trust_level: 1
+```
+
+| Level | Merge |
+| --- | --- |
+| 1 | Humans merge everything. The agent never merges. |
+| 2 | A designated merge bot may merge green two-way-door PRs. |
+| 3 | Autopilot may merge two-way-door PRs that have verify-loop evidence (`VERIFY_FAIL` then `VERIFY_PASS`). |
+
+One-way doors always need a human plus `interrogate`, at every level: money movement, schema or data migrations, auth, data deletion, infra or prod config, licences.
 
 ## Pipeline order
 
-`how` → `writing-plans` → `test-driven-development` → `verification-before-completion` → `code-review` → (`interrogate` when the change is a money-path or schema change) → `pr`.
+`how` → `writing-plans` → `verify-loop` → `test-driven-development` → `verification-before-completion` → `code-review` → (`interrogate` on one-way doors) → `pr`.
 
-Plans live in the pull request body.
+Plans live in the pull request body. Run `ticket-pipeline/scripts/pipeline_status.py` instead of inferring which steps are done.
 
 ## Optional model table
 

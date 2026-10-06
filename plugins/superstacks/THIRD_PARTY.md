@@ -1,5 +1,7 @@
 # Third-party notices
 
+This plugin is published at https://github.com/KunanonJ/superstacks.
+
 Each vendored skill keeps its upstream MIT notice in full.
 
 ## writing-plans

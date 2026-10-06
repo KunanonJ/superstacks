@@ -1,6 +1,6 @@
 ---
 name: ticket-pipeline
-description: Use when running a ticket from discovery through a draft PR. Sequences how, plans, TDD, verification, review, optional interrogate, then pr.
+description: Use when running a ticket from discovery through a draft PR. Sequences how, plans, verify-loop, TDD, verification, review, optional interrogate, then pr.
 license: MIT
 disable-model-invocation: true
 ---
@@ -9,20 +9,38 @@ disable-model-invocation: true
 
 Run a ticket from discovery through a **draft** pull request. `safety-overrides` beat every step.
 
+Put evidence in the PR body under the headings this skill names. Then run the status script. Do not argue in prose about which steps are done:
+
+```text
+python <this-skill>/scripts/pipeline_status.py --pr-body BODY.md
+```
+
+Re-run until the script prints `missing: 0`.
+
 ## Sequence
 
-1. **how** — build a mental model before changing code.
-2. **writing-plans** — plan in the pull request body, not a plans directory.
-3. **test-driven-development** — failing test, then minimal code.
-4. **verification-before-completion** — paste fresh command output before any success claim.
-5. **code-review** — Standards and Spec axes on the branch diff.
-6. **interrogate** — only for money-path or schema changes (payments, balances, migrations, authz).
-7. **pr** — draft pull request body. Ticket links are `Refs #N` only.
+1. **how** — build a mental model before changing code. Heading: `## How`.
+2. **writing-plans** — plan in the pull request body. Heading: `## Plan`.
+3. **verify-loop** — define the deterministic check, run it red (`VERIFY_FAIL`), then iterate.
+4. **test-driven-development** — if the check is a test: failing test, then minimal code. Heading: `## TDD` (include `red-green`).
+5. **verification-before-completion** — paste fresh `verify-loop` runner output. Heading: `## Evidence`.
+6. **code-review** — Standards and Spec axes on the branch diff. Heading: `## Code review`.
+7. **interrogate** — required for one-way doors (money movement, schema or data migrations, auth, data deletion, infra or prod config, licences). Heading: `## Interrogate`, or write `N/A (two-way door)`.
+8. **pr** — draft pull request body. Run `pr/scripts/check_pr_body.py`. Ticket links are `Refs #N` only.
 
 ## Hard rules (also in safety-overrides)
 
-- Draft PRs. Never merge, auto-merge, or mark ready.
+- Draft PRs. Never mark ready. Merge only as `trust_level` in safety-overrides allows.
 - Push only this branch. Rewrite with `--force-with-lease` only.
 - No production credentials, live infrastructure, runtime package installs, or secret-using CI jobs.
 - No tracker or chat writes from a ticket.
 - Skip a blocking approval gate only with `Ruling: what / why` in the PR body.
+
+## Stacked pull requests
+
+When one ticket is too large for a single reviewable PR, split it into layers:
+
+- One concern per layer. Dependencies belong in the same layer or a lower one.
+- Open the next layer while the lower one is still in review.
+- Merge bottom-up. When merging through the API, use the asynchronous merge endpoint for stacks.
+- Prefer `gh stack` for cascading rebases. If stacks are unavailable, chain pull requests with plain base-branch targeting.

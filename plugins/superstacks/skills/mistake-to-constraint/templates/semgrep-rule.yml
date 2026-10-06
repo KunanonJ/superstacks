@@ -1,0 +1,6 @@
+rules:
+  - id: constraint-banned-pattern
+    languages: [python]
+    message: Banned pattern. See CONSTRAINTS.md.
+    severity: ERROR
+    pattern: banned_name(...)

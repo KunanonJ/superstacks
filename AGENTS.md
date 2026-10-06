@@ -1,6 +1,6 @@
 # Superstacks contributor notes
 
-This repository is the Superstacks v6.0.0 plugin: a lean, MIT-licensed set of coding-agent skills at `plugins/superstacks/`.
+This repository is the Superstacks v6.1.0 plugin: a lean, MIT-licensed set of coding-agent skills at `plugins/superstacks/`.
 
 ## Layout
 

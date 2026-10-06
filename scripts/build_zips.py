@@ -18,6 +18,8 @@ def _zip_dir(zip_path: Path, source: Path, arc_root: str) -> None:
         for path in sorted(source.rglob("*")):
             if not path.is_file():
                 continue
+            if "__pycache__" in path.parts or path.suffix in {".pyc", ".pyo"}:
+                continue
             rel = path.relative_to(source)
             zf.write(path, Path(arc_root) / rel)
 

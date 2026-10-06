@@ -1,23 +1,36 @@
 # Superstacks
 
-Lean MIT skill stack for coding agents: discovery, plans, TDD, verification, review, draft PRs, and ticket pipelines.
+<img src="plugins/superstacks/assets/logo.svg" alt="Superstacks" width="96" height="96">
+
+Lean MIT skill stack for coding agents: discovery, plans, TDD, verification loops, review, draft PRs, and ticket pipelines.
 
 [![CI](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml/badge.svg)](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0B1F33.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-6.0.0-2EC4B6.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-6.1.0-2EC4B6.svg)](CHANGELOG.md)
 
 Superstacks is a small plugin, not a giant catalog. It vendors a handful of upstream skills at pinned git SHAs, applies documented patches, and adds a generic ticket pipeline plus hard safety overrides. The GitHub repository name is `KunanonJ/superstacks`.
+
+## Philosophy
+
+The engineer designs the environment. The model spends tokens on judgment.
+
+- **Environment over prompting.** Put verification, constraints, and coordinators in the repo so the agent does not have to be reminded in prose.
+- **Verification first.** Before writing code, name a deterministic check, run it red, then iterate until green. The agent should not be the human copying errors between tools.
+- **Constraints in code.** When a mistake repeats, encode it as a type, lint rule, test, or directory convention. A rules line is last.
+- **Skills as process.** A skill is a named loop with a script when the step is mechanical.
+
+Themes drawn from the public Matt Pocock × Poteto conversation: [YouTube](https://www.youtube.com/watch?v=MN9dGgmLyso). Paraphrase only; this README does not invent quotations.
 
 ## Why this instead of raw upstream
 
 - One folder you can list in Claude, Cursor, and Codex marketplaces.
 - Descriptions stay short, trigger-first, and product-neutral in skill bodies.
-- Safety overrides beat skill text: draft PRs, `Refs #N`, no merge, evidence before "done".
+- Safety overrides beat skill text: draft PRs, `Refs #N`, evidence before "done", and a `trust_level` ladder (default 1: humans merge everything).
 - Vendored copies are hashed in `sources.lock.json`. Patches live in `patches/`.
 
 ## Quick start
 
-Pick one row. The owner will rename the GitHub repo to `superstacks`; use that name in the commands.
+Pick one row. The GitHub repository is [`KunanonJ/superstacks`](https://github.com/KunanonJ/superstacks).
 
 | Surface | How |
 | --- | --- |
@@ -29,7 +42,7 @@ Pick one row. The owner will rename the GitHub repo to `superstacks`; use that n
 | `npx skills add` | `DISABLE_TELEMETRY=1 npx skills add KunanonJ/superstacks -g -s '*' --copy -y` |
 | Plain copy | Copy `plugins/superstacks/skills/<name>/` into your agent's skills directory |
 
-Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.0.0` tag for you.
+Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.1.0` tag for you.
 
 ## What this plugin runs, sends or fetches
 
@@ -40,19 +53,23 @@ Nothing. Superstacks is markdown, a couple of static images, and text helpers. I
 ```mermaid
 flowchart LR
   how --> plans[writing-plans]
-  plans --> tdd[test-driven-development]
+  plans --> vloop[verify-loop]
+  vloop --> tdd[test-driven-development]
   tdd --> verify[verification-before-completion]
   verify --> review[code-review]
-  review --> optional[interrogate if money-path or schema]
+  review --> optional[interrogate if one-way door]
   optional --> pr[pr draft]
 ```
 
-`ticket-pipeline` is the user-invoked router for that order. `safety-overrides` always apply.
+`ticket-pipeline` is the user-invoked router for that order. `verify-loop` is the extra always-loaded skill: define the check, run it red, then green. `safety-overrides` always apply.
+
+Off-pipeline (user-invoked): `mistake-to-constraint`, `steer-miner`, `intake-triage`, `gardening`, `sample-review`.
 
 ## Skills
 
 | Skill | Invocation | Source |
 | --- | --- | --- |
+| verify-loop | model | this repo |
 | writing-plans | model | obra/superpowers |
 | test-driven-development | model | obra/superpowers |
 | verification-before-completion | model | obra/superpowers |
@@ -67,16 +84,22 @@ flowchart LR
 | interrogate | user | pstack (cursor/plugins) |
 | ticket-pipeline | user | this repo |
 | workflow-profile | user | this repo |
+| mistake-to-constraint | user | this repo |
+| steer-miner | user | this repo |
+| intake-triage | user | this repo |
+| gardening | user | this repo |
+| sample-review | user | this repo |
 
 Always-on rule: `plugins/superstacks/rules/safety-overrides.mdc`.
 
 ## Safety
 
-- Draft pull requests only. Never merge, auto-merge, or mark ready.
+- Draft pull requests. Never mark ready. Merge only as `trust_level` allows (default 1: humans merge everything).
 - `Refs #N` never `Closes` / `Fixes` / `Resolves`.
 - Push the working branch only. `--force-with-lease` only.
 - No production credentials, live infrastructure, runtime installs, or secret CI jobs.
 - Plans go in the PR body. "Done" needs pasted command output.
+- One-way doors (money, schema or data migrations, auth, data deletion, infra or prod config, licences) always need a human plus `interrogate`.
 
 See [SECURITY.md](SECURITY.md).
 

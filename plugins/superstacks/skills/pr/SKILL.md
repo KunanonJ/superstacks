@@ -10,17 +10,31 @@ metadata:
     url: "https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md"
 ---
 
+Run the checker. Do not reason about section names or ticket-ref wording:
+
+```text
+python <this-skill>/scripts/check_pr_body.py BODY.md
+```
+
+Fix whatever the script prints. The body is not ready until exit 0.
+
 Use this template for writing the PR body:
 
 ```markdown
+Refs #N
+
+## Plan
+
+<what will change and how we will know>
+
 ## Summary
 
 <diagram, diff-sketch, or tree>
 
 ## Evidence
 
-- **Before:** <screenshot/output/failing test run>
-  **After:** <screenshot/output/passing test run>
+- **Before:** `VERIFY_FAIL` output from verify-loop
+  **After:** `VERIFY_PASS` output from verify-loop
 
 ## Merge Danger
 
@@ -35,7 +49,11 @@ Use this template for writing the PR body:
 
 ## Sections
 
-Skip all preambles and keep prose brief. Use the user's domain language from `GLOSSARY.md`.
+Skip all preambles and keep prose brief. Use the user's domain language from `GLOSSARY.md`. Ticket links are `Refs #N` only.
+
+### Plan
+
+Short enough that `scripts/check_pr_body.py` sees a non-empty `## Plan` section: the change, the verify-loop command, and the door type.
 
 ### Summary
 
@@ -158,14 +176,18 @@ You may use one of these, you may use several, it is unlikely you will use all o
 
 ### Evidence
 
-Concrete evidence that the change works. Show a before and after.
+Concrete evidence that the change works. Show a before and after. Paste `VERIFY_FAIL` then `VERIFY_PASS` from the `verify-loop` runner. The checker requires those tokens.
 
 Screenshots are S-tier - when the environment is set up for it and the change is visual.
 
-Execution-based evidence is A-tier. Test results, console output. Show the exact test that now fails and passes, using pseudocode.
+Execution-based evidence is A-tier. Test results, console output. Show the exact test that now fails and passes, using the runner output, not a paraphrase.
 
 ### Merge Danger
 
 Describe whether it's a one-way or two-way door. You can walk back through two-way doors, but not one-way doors. A PR that is cheap to roll back is lower risk. Changes that involve destructive actions or hard-to-reverse decisions are one-way doors.
 
 The blast radius is the potential impact or scope of the changes introduced by this PR. Consider all possibilities. Examples are layout shift, breakages for consumers, mobile responsiveness, etc.
+
+### Stacked pull requests
+
+One concern per layer. A layer may depend only on itself or on a lower layer. Open the next layer while the lower one is in review. Merge bottom-up. When merging through the API, use the asynchronous merge endpoint for stacks. Prefer `gh stack` for cascading rebases. If stacks are unavailable, chain pull requests with plain base-branch targeting.
