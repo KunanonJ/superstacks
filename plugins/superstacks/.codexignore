@@ -1,0 +1,12 @@
+# Local artifacts and secrets. Do not ship these in a plugin bundle.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+dist/
+.env
+.env.*
+.DS_Store
+*.log
