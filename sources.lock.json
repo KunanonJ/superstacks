@@ -1,6 +1,6 @@
 {
   "plugin": "superstacks",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "repository": "https://github.com/KunanonJ/superstacks",
   "sources": [
     {
@@ -197,12 +197,12 @@
     }
   },
   "dest_sha256": {
-    ".claude-plugin/plugin.json": "2209bf98c4f2ed8701ddd7d83937006e6ece97371028bf1044730108d6db482d",
-    ".codex-plugin/plugin.json": "eacae8a9735e52576a46e24e1ffe56a93692d66793fa41c062dd32daae9c7d0d",
-    ".cursor-plugin/plugin.json": "592422102a182ca31fb52f19bcf7e4b8f7f2bee9edd9f075ad56f832fb742104",
+    ".claude-plugin/plugin.json": "f74013307f20796b2c97e09200bcec320b04d41476d94f9ac6593282968753a0",
+    ".codex-plugin/plugin.json": "1f98e3cd7d41b39d4a1de10ff5b5c659b0d7b5304aebd43c7d942a5f10a02f71",
+    ".cursor-plugin/plugin.json": "b21b1836fbfce28dcffee8bff3c050977f43abb3c8c3fff3e1f2002cabba02ad",
     "LICENSE": "7fce1ee5b8a12918fdc25342b1e8e348c1f7cf588cf6d9224767dd54468cfb3c",
-    "README.md": "7c9a6a39f3010631d1f656eba4c6d70609b822346135ffd8ce62b57a26b170ff",
-    "SECURITY.md": "cfe20c4a4c4cc0ac8a5cc36a3734da229bded82f8802979d0c14add562857d30",
+    "README.md": "ab7388aab0b1caee9bec7f93c261d8fa206f28eda56ff0002ea3a7f5020eb340",
+    "SECURITY.md": "dcd7e34aa0149adc62cfdcf790c84e4826bb40f7367592d72be30e4d61d0e772",
     "THIRD_PARTY.md": "57d4c838d28934261465850be260e6fe4d32c0c989f5f2da5c535baf5168ea3b",
     "assets/icon-16.png": "5dda6b14b54ea384ec401734d38035780eae6a2162a1ffa96a90adca5a96e1fc",
     "assets/icon-64.png": "7da35ffc413dacc5f53ed453ca31db3caf82185e5a0cffafccd42a5549a7632d",

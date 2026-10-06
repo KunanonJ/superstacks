@@ -6,7 +6,7 @@ Lean MIT skill stack for coding agents: discovery, plans, TDD, verification loop
 
 [![CI](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml/badge.svg)](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0B1F33.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-6.1.0-2EC4B6.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-6.1.1-2EC4B6.svg)](CHANGELOG.md)
 
 Superstacks is a small plugin, not a giant catalog. It vendors a handful of upstream skills at pinned git SHAs, applies documented patches, and adds a generic ticket pipeline plus hard safety overrides. The GitHub repository name is `KunanonJ/superstacks`.
 
@@ -37,16 +37,16 @@ Pick one row. The GitHub repository is [`KunanonJ/superstacks`](https://github.c
 | Claude Code | `/plugin marketplace add KunanonJ/superstacks` then `/plugin install superstacks@superstacks` |
 | Cursor | Copy `plugins/superstacks/` to `~/.cursor/plugins/local/superstacks/` until the public listing exists |
 | Codex | `codex plugin marketplace add KunanonJ/superstacks` |
-| claude.ai ZIP upload | `python scripts/build_zips.py` and upload a per-skill ZIP from `dist/` (`<skill>/SKILL.md` layout) |
+| claude.ai ZIP upload | `python scripts/build_zips.py` and upload a per-skill ZIP from `dist/` (`<skill>/SKILL.md`) or `dist/flat/` (`SKILL.md` at zip root) |
 | ChatGPT ZIP upload | Same per-skill ZIPs, or `dist/superstacks-plugin.zip` for the OpenAI plugin portal |
 | `npx skills add` | `DISABLE_TELEMETRY=1 npx skills add KunanonJ/superstacks -g -s '*' --copy -y` |
 | Plain copy | Copy `plugins/superstacks/skills/<name>/` into your agent's skills directory |
 
-Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.1.0` tag for you.
+Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.1.1` tag for you.
 
 ## What this plugin runs, sends or fetches
 
-Nothing. Superstacks is markdown, a couple of static images, and text helpers. It does not start processes, open network connections, collect telemetry, or read credentials. Optional installers such as `npx skills add` are third-party; pass `DISABLE_TELEMETRY=1` if you use that path.
+Skills may tell the agent to run optional local helper scripts: `git diff`/`git log`, a user-supplied test command via verify-loop, or an existing Playwright install. The plugin itself makes no network calls, collects no telemetry, and does not read credentials. Optional installers such as `npx skills add` are third-party; pass `DISABLE_TELEMETRY=1` if you use that path.
 
 ## Pipeline
 

@@ -1,6 +1,6 @@
 # Superstacks
 
-<img src="assets/logo.svg" alt="Superstacks" width="96" height="96">
+![Superstacks](assets/logo.svg)
 
 Superstacks is a small, MIT-licensed plugin of coding-agent skills. It covers discovery, implementation plans, test-driven development, a verify-loop, two-axis review, draft pull requests, optional adversarial review, design grilling, and coordinator skills for constraints, intake, gardening, and sampling.
 
@@ -8,7 +8,7 @@ This plugin does not ship MCP servers, hooks, commands, or custom agents. Skills
 
 ## What this plugin runs, sends or fetches
 
-Nothing. Superstacks contains instructions and static assets only. It does not start processes, call network APIs, collect telemetry, or read credentials. Installing it copies files. Optional third-party installers such as `npx skills add` are documented below with a telemetry opt-out; they are not part of the plugin itself.
+Skills may tell the agent to run optional local helper scripts: `git diff`/`git log`, a user-supplied test command via verify-loop, or an existing Playwright install. The plugin itself makes no network calls, collects no telemetry, and does not read credentials. Installing it copies files. Optional third-party installers such as `npx skills add` are documented below with a telemetry opt-out; they are not part of the plugin itself.
 
 ## Install
 
@@ -19,11 +19,11 @@ Install from [`KunanonJ/superstacks`](https://github.com/KunanonJ/superstacks).
 | Claude Code | `/plugin marketplace add KunanonJ/superstacks` then `/plugin install superstacks@superstacks` (marketplace name is `superstacks`) |
 | Cursor | Copy `plugins/superstacks/` to `~/.cursor/plugins/local/superstacks/` until the listing is public |
 | Codex | `codex plugin marketplace add KunanonJ/superstacks` |
-| claude.ai / ChatGPT ZIP upload | Build with `python scripts/build_zips.py` and attach the per-skill ZIP or the plugin ZIP from `dist/` |
+| claude.ai / ChatGPT ZIP upload | Build with `python scripts/build_zips.py` and attach a nested ZIP from `dist/`, a flat ZIP from `dist/flat/` (`SKILL.md` at zip root), or the plugin ZIP |
 | `npx skills add` | `DISABLE_TELEMETRY=1 npx skills add KunanonJ/superstacks -g -s '*' --copy -y` |
-| Plain copy | Copy any `skills/<name>/` folder into your agent's skills directory |
+| Plain copy | Copy any `skills/<name>/` folder into the agent's skills directory |
 
-Per-skill ZIPs use a `<skill>/SKILL.md` layout so they upload cleanly. The plugin ZIP is the OpenAI portal bundle. Attach `dist/` artifacts to a GitHub Release when you publish a version; this repository does not create tags for you.
+Nested per-skill ZIPs use a `<skill>/SKILL.md` layout. `dist/flat/` puts `SKILL.md` at the zip root for directories that need that layout. The plugin ZIP is the OpenAI portal bundle. Attach `dist/` artifacts to a GitHub Release when you publish a version; this repository does not create tags for you.
 
 ## Skills
 

@@ -1,7 +1,7 @@
 {
   "name": "superstacks",
   "displayName": "Superstacks",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "Use for planning, TDD, verification loops, constraints, gardening, review, PRs, debugging, and ticket pipelines. Lean MIT skill stack for coding agents.",
   "author": {
     "name": "Kunanon Jarat",
@@ -23,11 +23,28 @@
   "interface": {
     "displayName": "Superstacks",
     "shortDescription": "Lean agent workflow skills",
-    "longDescription": "Superstacks is a small MIT-licensed set of coding-agent skills: discovery, plans in the pull request body, test-driven development, verify-loop, verification before any success claim, two-axis review, draft pull requests, optional interrogate for one-way doors, constraints, gardening, and design grilling. The plugin runs, sends, and fetches nothing.",
+    "longDescription": "Superstacks is a small MIT-licensed set of coding-agent skills: discovery, plans in the pull request body, test-driven development, verify-loop, verification before any success claim, two-axis review, draft pull requests, optional interrogate for one-way doors, constraints, gardening, and design grilling. Skills may tell the agent to run optional local helpers (git diff/log, a user-supplied test command, or an existing Playwright install). The plugin makes no network calls, collects no telemetry, and does not read credentials.",
     "developerName": "Kunanon Jarat",
-    "category": "Productivity",
-    "capabilities": [],
+    "category": "Developer Tools",
+    "capabilities": [
+      "Plan in the PR body",
+      "TDD and verify-loop",
+      "Two-axis code review",
+      "Draft PRs only"
+    ],
+    "defaultPrompt": [
+      "Write the plan in the PR body, then keep the pull request draft.",
+      "Run TDD and verify-loop: name the check, fail it first, then go green.",
+      "Do a two-axis code review, then open a draft pull request only."
+    ],
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/logo.png"
+  },
+  "extensions": {
+    "com.openai": {
+      "publication": {
+        "release_notes": "6.1.1 marketplace readiness: Claude marketplace metadata, truthful helper-script wording, Codex Developer Tools listing, and flat per-skill zips."
+      }
+    }
   }
 }
