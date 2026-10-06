@@ -4,6 +4,8 @@ on:
   pull_request:
     # No branches filter: every PR layer runs this workflow, including
     # mid-stack PRs whose base is not the default branch.
+  push:
+    branches: [main]
 
 permissions:
   contents: read
