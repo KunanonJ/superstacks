@@ -1,74 +1,30 @@
-# Contributing to ai-skills-hub
+# Contributing
 
-The default branch is a lean 100-skill product for AI coding agents across
-Cursor, Codex, Claude Code, Gemini CLI, Windsurf, and similar developer
-platforms. Contributions should improve that focused set, not expand the
-repository back into a broad corpus.
+Thanks for helping Superstacks stay small and installable.
 
-## Contribution Rules
+## Development
 
-- Keep exactly 100 top-level directories under `skills/`.
-- Keep `skills-manifest.txt` sorted and exactly 100 lines.
-- Keep `skills-source-map.tsv` aligned with the manifest.
-- Every retained skill must have `skills/<name>/SKILL.md`.
-- Every `SKILL.md` must have frontmatter with `name` and `description`.
-- Do not add secrets, credentials, or prompt-control instructions.
-- Do not restore full-corpus install instructions to the default README.
+1. Use a virtualenv and `pip install -r requirements.txt`.
+2. Edit skills under `plugins/superstacks/skills/` or rules under `plugins/superstacks/rules/`.
+3. If you change a vendored file, regenerate the matching patch in `patches/` against the pinned SHA in `sources.lock.json`.
+4. Keep skill bodies product-neutral ("the model", "the agent"). Host names belong in install docs only.
+5. Open a **draft** pull request. Do not merge, auto-merge, or mark ready.
 
-## Adding Or Replacing A Skill
-
-Because the main branch is capped at 100 skills, adding a skill means replacing
-an existing one.
-
-1. Add or update `skills/<skill-name>/SKILL.md`.
-2. Remove the displaced skill directory.
-3. Update `skills-manifest.txt`.
-4. Update `skills-source-map.tsv`.
-5. Run the lean validation commands.
-
-Prefer skills that directly help AI coding agents with review, debugging,
-testing, frontend, backend, DevOps, security, documentation, Git/GitHub, MCP, or
-agent workflow.
-
-## Quality Bar
-
-A good skill has:
-
-- One clear trigger for when the agent should use it.
-- Concrete workflow instructions.
-- Bounded references, scripts, or templates only when they help.
-- No broad persona text, vague encouragement, or stale external assumptions.
-- A description that starts with a clear activation phrase, ideally
-  `This skill should be used when ...`.
-
-## Validation
-
-Run:
+## Checks
 
 ```bash
-python -m app.skill_quality validate-lean
-python -m app.skill_quality normalize-metadata --check
-uv run --with pytest --with packaging pytest -q
-uv run --with ruff ruff check .
+python -m app.plugin_lint
+python -m pytest
+python scripts/check_archive_size.py
+python scripts/build_zips.py
 ```
 
-`validate-lean` is blocking. `normalize-metadata --check` blocks missing
-frontmatter fields and reports weak descriptions as warnings.
+`scripts/claude_validate.sh` runs `claude plugin validate --strict` with a pinned CLI when that CLI installs without secrets. CI skips it with a note otherwise.
 
-## Full Corpus
+## Naming
 
-The old full corpus is recoverable from:
+The plugin folder and every plugin/marketplace `name` is `superstacks`. Do not put `claude`, `cursor`, `openai`, `official`, `plugin`, `mcp`, or `test` in those identifiers. Upstream skill folder `test-driven-development` is an exception.
 
-- Branch: `archive/full-corpus-fa85915`
-- Tag: `full-corpus-fa85915`
+## License
 
-Do not use `sync-listed-sources.sh` or one-line shell bootstrap flows for normal
-main-branch contributions. Those workflows are archival and can reintroduce the
-large corpus.
-
-## Legacy GitHub Issues
-
-Issues opened before the lean 100-skill pivot may reference the old full corpus,
-marketing skills, or README cherry-pick flows. See
-[docs/legacy-issue-guidance.md](docs/legacy-issue-guidance.md) for triage notes
-and resolution status.
+By contributing you agree the work is MIT-licensed, same as [LICENSE](LICENSE).

@@ -1,0 +1,16 @@
+---
+description: Hard safety overrides that beat any skill text. Draft PRs, Refs not Closes, no merge, evidence before done.
+alwaysApply: true
+---
+
+Safety overrides beat every skill in this plugin.
+
+1. Open pull requests as drafts. Never merge, auto-merge, or mark ready.
+2. Ticket links use `Refs #N`. Never Closes, Fixes, or Resolves.
+3. Push only the current working branch. Rewrite with `--force-with-lease` only.
+4. Do not use production credentials or live infrastructure.
+5. Do not install packages at runtime from a skill. Do not add secret-using CI jobs.
+6. Do not write to issue trackers or chat from a ticket.
+7. Skip blocking approval gates only with `Ruling: what / why` in the PR body.
+8. Put implementation plans in the PR body, not a plans directory.
+9. Do not claim done without pasted command output from this turn.

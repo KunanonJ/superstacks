@@ -1,0 +1,11 @@
+--- a/verification-before-completion/SKILL.md	2026-10-06 08:44:32.034304333 +0000
++++ b/verification-before-completion/SKILL.md	2026-10-06 08:58:56.498986309 +0000
+@@ -1,6 +1,7 @@
+ ---
+ name: verification-before-completion
+-description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always
++description: Use when about to claim work is complete, fixed, or passing. Run verification and paste output before any success claim.
++license: MIT
+ ---
+ 
+ # Verification Before Completion

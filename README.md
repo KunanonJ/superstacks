@@ -1,173 +1,93 @@
-# ai-skills-hub
+# Superstacks
 
-542 cross-platform SKILL.md workflows for AI coding agents.
+Lean MIT skill stack for coding agents: discovery, plans, TDD, verification, review, draft PRs, and ticket pipelines.
 
-A unified skills repository that aggregates skills from Cursor (built-in + 30
-plugins), Aside, Claude Code agents, and hand-curated coding workflows. Every
-skill is portable across Cursor, Claude Code, Codex, Gemini CLI, Windsurf, and
-other AI developer platforms.
+[![CI](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml/badge.svg)](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-0B1F33.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-6.0.0-2EC4B6.svg)](CHANGELOG.md)
 
-## Skill Sources
+Superstacks is a small plugin, not a giant catalog. It vendors a handful of upstream skills at pinned git SHAs, applies documented patches, and adds a generic ticket pipeline plus hard safety overrides. The GitHub repository name is `KunanonJ/superstacks`.
 
-| Source | Count | Description |
-| --- | --- | --- |
-| Cursor built-in | 20 | SDK, canvas, hooks, statusline, review, shell, onboard |
-| Cursor plugins | 316 | 30 plugins — Cloudflare, Figma, Firebase, PostHog, Sentry, Stripe, Resend, Convex, MongoDB, and more |
-| Aside built-in | 45 | Browser automation, document processing (DOCX/XLSX/PDF/PPTX), Google suite, Slack, Notion, tax forms |
-| Claude agents | 60 | Code review, TDD, security, architecture, build resolvers, performance, accessibility |
-| Curated skills | 101 | Code review, debugging, testing, frontend, backend, DevOps, security, documentation, MCP |
+## Why this instead of raw upstream
 
-## Install
+- One folder you can list in Claude, Cursor, and Codex marketplaces.
+- Descriptions stay short, trigger-first, and product-neutral in skill bodies.
+- Safety overrides beat skill text: draft PRs, `Refs #N`, no merge, evidence before "done".
+- Vendored copies are hashed in `sources.lock.json`. Patches live in `patches/`.
 
-### Cursor
+## Quick start
 
-```bash
-npx skills add KunanonJ/ai-skills-hub -g -a cursor -s '*' --copy -y
-```
+Pick one row. The owner will rename the GitHub repo to `superstacks`; use that name in the commands.
 
-### Claude Code
-
-```bash
-npx skills add KunanonJ/ai-skills-hub -g -a claude-code -s '*' --copy -y
-```
-
-### Codex
-
-```bash
-npx skills add KunanonJ/ai-skills-hub -g -a codex -s '*' --copy -y
-```
-
-### Manual Copy
-
-```bash
-git clone --depth 1 https://github.com/KunanonJ/ai-skills-hub.git /tmp/ai-skills-hub
-rsync -a /tmp/ai-skills-hub/skills/ ~/.claude/skills/
-```
-
-Use the target skill directory for your agent, such as `~/.claude/skills/`,
-`~/.codex/skills/`, or `~/.cursor/skills/`.
-
-### Selective Install
-
-Install a specific category:
-
-```bash
-# Cursor plugins only
-rsync -a /tmp/ai-skills-hub/skills/cursor-plugin-*/ ~/.claude/skills/
-
-# Claude agents only
-rsync -a /tmp/ai-skills-hub/skills/agent-*/ ~/.claude/skills/
-
-# Aside skills only
-rsync -a /tmp/ai-skills-hub/skills/aside-*/ ~/.claude/skills/
-```
-
-## What Is Included
-
-### Cursor Built-in Skills
-
-Canvas, SDK (TypeScript + Python), shell integration, statusline configuration,
-hook creation, rule and skill authoring, code review (standard + Bugbot +
-security), subagent creation, PR splitting, CLI config management.
-
-### Cursor Plugin Skills (30 plugins)
-
-| Plugin | Skills | Highlights |
-| --- | --- | --- |
-| Cloudflare | 19 | Workers, Durable Objects, Agents SDK, Wrangler, email service |
-| PostHog | 73 | Analytics, experiments, feature flags, session replay |
-| Sentry | 31 | Error tracking, alerts, PR review, SDK guides |
-| pstack | 36 | Full-stack development toolkit |
-| Figma | 11 | Design context, code connect, motion, slides |
-| Firebase | 11 | Auth, Firestore, hosting, AI logic |
-| Convex | 7 | Real-time backend, schema, functions |
-| MongoDB | 8 | Queries, aggregation, schema design |
-| Superpowers | 14 | Agent orchestration, workflow automation |
-| Tavily | 6 | Search, crawl, extract, research |
-| Resend | 5 | Email sending, React Email, CLI |
-| Stripe | 4 | Payments, billing, Connect |
-| Cursor Team Kit | 18 | Team collaboration, shared workflows |
-| Others | 73 | Canva, Context7, Shadcn, Railway, Postman, Ponytail, and more |
-
-### Aside Skills
-
-Browser automation (Chrome, visual browse, CAPTCHA solving), document processing
-(DOCX, XLSX, PDF, PPTX with scripts), Google suite (Docs, Gmail, Sheets, Search,
-Accounts), password managers (1Password, Bitwarden, LastPass, Dashlane, Apple
-Passwords), Slack, Notion, YouTube, X/Twitter, image search, and 16 site-specific
-skills (GitHub, Jira, Linear, Confluence, Airtable, and more).
-
-### Claude Code Agents
-
-60 specialized agents covering code review, TDD, security review, architecture,
-build error resolution (TypeScript, Go, Rust, Python, Java, Kotlin, Swift, C++,
-Dart/Flutter, Django, PyTorch), performance optimization, accessibility, database
-review, documentation, and multi-language code reviewers.
-
-### Curated Coding Skills
-
-| Area | Examples |
+| Surface | How |
 | --- | --- |
-| Review and debugging | `code-review`, `bug-hunter`, `systematic-debugging` |
-| Testing | `test-driven-development`, `playwright`, `property-based-testing` |
-| Code quality | `clean-code`, `refactoring-patterns`, `codebase-cleanup-tech-debt` |
-| Documentation | `documentation`, `architecture-patterns`, `api-design-principles` |
-| Frontend | `typescript-expert`, `react-patterns`, `nextjs-best-practices` |
-| Backend | `backend-api-design`, `python-best-practices`, `fastapi-pro` |
-| Infrastructure | `postgresql`, `docker-patterns`, `kubernetes-patterns` |
-| Delivery | `github-actions-advanced`, `ci-cd-patterns`, `deployment-patterns` |
-| Security | `security-review`, `secrets-management`, `dependency-check` |
-| MCP and agents | `mcp-server-patterns`, `git-worktree`, `openai-docs` |
+| Claude Code | `/plugin marketplace add KunanonJ/superstacks` then `/plugin install superstacks@superstacks` |
+| Cursor | Copy `plugins/superstacks/` to `~/.cursor/plugins/local/superstacks/` until the public listing exists |
+| Codex | `codex plugin marketplace add KunanonJ/superstacks` |
+| claude.ai ZIP upload | `python scripts/build_zips.py` and upload a per-skill ZIP from `dist/` (`<skill>/SKILL.md` layout) |
+| ChatGPT ZIP upload | Same per-skill ZIPs, or `dist/superstacks-plugin.zip` for the OpenAI plugin portal |
+| `npx skills add` | `DISABLE_TELEMETRY=1 npx skills add KunanonJ/superstacks -g -s '*' --copy -y` |
+| Plain copy | Copy `plugins/superstacks/skills/<name>/` into your agent's skills directory |
 
-Browse the complete set in [`skills/`](./skills/) or
-[`skills-manifest.txt`](./skills-manifest.txt).
+Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.0.0` tag for you.
 
-## Skill Format
+## What this plugin runs, sends or fetches
 
-Every skill follows the same structure:
+Nothing. Superstacks is markdown, a couple of static images, and text helpers. It does not start processes, open network connections, collect telemetry, or read credentials. Optional installers such as `npx skills add` are third-party; pass `DISABLE_TELEMETRY=1` if you use that path.
 
-```
-skills/<name>/
-  SKILL.md          # Main skill document with YAML frontmatter
-  hooks.json        # Optional: lifecycle hooks
-  scripts/          # Optional: supporting scripts
-  sdk/              # Optional: type definitions or SDK files
-```
+## Pipeline
 
-Frontmatter format:
-
-```yaml
----
-name: skill-name
-description: >-
-  One-line description of what the skill does and when to use it.
-metadata:
-  version: "0.1.0"
----
+```mermaid
+flowchart LR
+  how --> plans[writing-plans]
+  plans --> tdd[test-driven-development]
+  tdd --> verify[verification-before-completion]
+  verify --> review[code-review]
+  review --> optional[interrogate if money-path or schema]
+  optional --> pr[pr draft]
 ```
 
-## Validation
+`ticket-pipeline` is the user-invoked router for that order. `safety-overrides` always apply.
 
-Check that all skills have valid frontmatter:
+## Skills
 
-```bash
-python -m app.skill_quality normalize-metadata --check
-```
+| Skill | Invocation | Source |
+| --- | --- | --- |
+| writing-plans | model | obra/superpowers |
+| test-driven-development | model | obra/superpowers |
+| verification-before-completion | model | obra/superpowers |
+| diagnosing-bugs | model | mattpocock/skills |
+| code-review | model | mattpocock/skills |
+| pr | model | mattpocock/skills |
+| writing-for-agents | model | mattpocock/skills |
+| grilling | model | mattpocock/skills |
+| domain-modeling | model | mattpocock/skills |
+| grill-with-docs | user | mattpocock/skills |
+| how | user | pstack (cursor/plugins) |
+| interrogate | user | pstack (cursor/plugins) |
+| ticket-pipeline | user | this repo |
+| workflow-profile | user | this repo |
 
-## Archive
+Always-on rule: `plugins/superstacks/rules/safety-overrides.mdc`.
 
-The previous full corpus (4,874 skills) and the original 100-skill lean set are
-preserved:
+## Safety
 
-- Full corpus: branch `archive/full-corpus-fa85915`, tag `full-corpus-fa85915`
-- Release history: v4.0.0 through v4.4.0
+- Draft pull requests only. Never merge, auto-merge, or mark ready.
+- `Refs #N` never `Closes` / `Fixes` / `Resolves`.
+- Push the working branch only. `--force-with-lease` only.
+- No production credentials, live infrastructure, runtime installs, or secret CI jobs.
+- Plans go in the PR body. "Done" needs pasted command output.
 
-```bash
-git fetch origin archive/full-corpus-fa85915
-git checkout archive/full-corpus-fa85915
-```
+See [SECURITY.md](SECURITY.md).
 
 ## Contributing
 
-PRs welcome. Each skill needs a `SKILL.md` with valid `name` and `description`
-frontmatter. Use `metadata.version: "0.1.0"` for new skills.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Run `python -m app.plugin_lint` and `python -m pytest` before opening a draft PR.
+
+## Credits
+
+Vendored under MIT from Jesse Vincent, Matt Pocock, Lauren Tan / pstack, and a confirmed MIT excerpt of HumanLayer `show-me` inside `pr`. Full notices: [plugins/superstacks/THIRD_PARTY.md](plugins/superstacks/THIRD_PARTY.md).
+
+## License
+
+[MIT](LICENSE) © 2026 Kunanon Jarat.

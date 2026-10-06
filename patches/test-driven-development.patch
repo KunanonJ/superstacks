@@ -1,0 +1,10 @@
+--- a/test-driven-development/SKILL.md	2026-10-06 08:44:32.034304333 +0000
++++ b/test-driven-development/SKILL.md	2026-10-06 08:58:56.498986309 +0000
+@@ -1,6 +1,7 @@
+ ---
+ name: test-driven-development
+ description: Use when implementing any feature or bugfix, before writing implementation code
++license: MIT
+ ---
+ 
+ # Test-Driven Development (TDD)

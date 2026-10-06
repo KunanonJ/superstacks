@@ -1,0 +1,14 @@
+{
+  "name": "superstacks",
+  "owner": {
+    "name": "Kunanon Jarat",
+    "email": "fronk.kunanon@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "superstacks",
+      "source": "./plugins/superstacks",
+      "description": "Use for planning, TDD, verification, code review, PRs, debugging, design grilling, and ticket pipelines. Lean MIT skill stack for coding agents."
+    }
+  ]
+}

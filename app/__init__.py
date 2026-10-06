@@ -1,1 +1,1 @@
-"""AI skills hub maintenance package."""
+"""Repo tooling for the Superstacks plugin."""

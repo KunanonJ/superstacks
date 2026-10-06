@@ -1,0 +1,32 @@
+{
+  "name": "superstacks",
+  "displayName": "Superstacks",
+  "version": "6.0.0",
+  "description": "Use for planning, TDD, verification, code review, PRs, debugging, design grilling, and ticket pipelines. Lean MIT skill stack for coding agents.",
+  "author": {
+    "name": "Kunanon Jarat",
+    "email": "fronk.kunanon@gmail.com"
+  },
+  "homepage": "https://github.com/KunanonJ/superstacks",
+  "repository": "https://github.com/KunanonJ/superstacks",
+  "license": "MIT",
+  "keywords": [
+    "workflow",
+    "tdd",
+    "review",
+    "debugging",
+    "skills",
+    "agents"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Superstacks",
+    "shortDescription": "Lean agent workflow skills",
+    "longDescription": "Superstacks is a small MIT-licensed set of coding-agent skills: discovery, implementation plans in the pull request body, test-driven development, verification before any success claim, two-axis code review, draft pull requests, optional adversarial review for money-path or schema changes, and design grilling with ADRs. The plugin runs, sends, and fetches nothing.",
+    "developerName": "Kunanon Jarat",
+    "category": "Productivity",
+    "capabilities": [],
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png"
+  }
+}

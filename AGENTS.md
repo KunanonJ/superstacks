@@ -1,16 +1,18 @@
-## Learned User Preferences
+# Superstacks contributor notes
 
-- Only create git commits when explicitly requested.
-- Uses Söhne font in Cursor (editor, integrated terminal, debug console), not Test Söhne.
-- Prefix shell commands with `rtk` for Headroom token savings when safe; use raw commands only for debugging.
-- Configure MCP servers globally in `~/.cursor/mcp.json`; disable broken `plugin-*` duplicates in Settings → Tools & MCP and keep working user-defined entries.
-- Reload Cursor (Developer: Reload Window) to pick up MCP and skills changes; full quit is rarely needed.
+This repository is the Superstacks v6.0.0 plugin: a lean, MIT-licensed set of coding-agent skills at `plugins/superstacks/`.
 
-## Learned Workspace Facts
+## Layout
 
-- Canonical GitHub repo is `https://github.com/KunanonJ/ai-skills-hub`; local workspace folder is `claude-skills-hub-lean`.
-- Lean corpus ships exactly 100 skills; validate with `python -m app.skill_quality validate-lean`.
-- Run tests from `.venv` with `python -m pytest`.
-- Cursor global skills install: `npx skills add KunanonJ/ai-skills-hub -g -a cursor -s '*' --copy -y`.
-- Full historical corpus is preserved on branch/tag `archive/full-corpus-fa85915`.
-- Project-level skill mirror lives at `.agents/skills/`.
+- Plugin code and skills: `plugins/superstacks/`
+- Manifests: `plugins/superstacks/.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json`, `.codex-plugin/plugin.json`
+- Marketplaces: `.claude-plugin/marketplace.json`, `.cursor-plugin/marketplace.json`, `.agents/plugins/marketplace.json`
+- Vendor pins: `sources.lock.json`
+- Dest-only diffs: `patches/`
+- Checks: `python -m app.plugin_lint` and `python -m pytest`
+
+Do not add a root `plugin.json`. Do not add `commands/`, `agents/`, or `hooks/`. Do not name the plugin or marketplaces with `claude`, `cursor`, `openai`, `official`, `plugin`, `mcp`, or `test`.
+
+Skill bodies must stay product-neutral. Install docs may name hosts.
+
+Open draft pull requests only. Safety overrides in `plugins/superstacks/rules/safety-overrides.mdc` beat skill text.

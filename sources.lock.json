@@ -1,0 +1,236 @@
+{
+  "plugin": "superstacks",
+  "version": "6.0.0",
+  "sources": [
+    {
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "sha": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Jesse Vincent",
+      "skills": [
+        "writing-plans",
+        "test-driven-development",
+        "verification-before-completion"
+      ]
+    },
+    {
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "skills": [
+        "diagnosing-bugs",
+        "code-review",
+        "pr",
+        "writing-for-agents",
+        "grill-with-docs",
+        "grilling",
+        "domain-modeling"
+      ]
+    },
+    {
+      "name": "cursor/plugins pstack",
+      "url": "https://github.com/cursor/plugins",
+      "sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Lauren Tan",
+      "skills": [
+        "how",
+        "interrogate"
+      ]
+    },
+    {
+      "name": "humanlayer/skills show-me (excerpt in pr)",
+      "url": "https://github.com/humanlayer/skills",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 HumanLayer",
+      "note": "Confirmed MIT. pr/CREDITS.md attributes the Summary visuals copied into pr."
+    }
+  ],
+  "copied": {
+    "skills/writing-plans/SKILL.md": {
+      "source": "obra/superpowers",
+      "source_path": "skills/writing-plans/SKILL.md",
+      "source_sha": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+      "sha256_copied": "a6c67c1900064347c2a329990dd3c555657c51c3ec53b259a08aa01a2c26139a"
+    },
+    "skills/test-driven-development/SKILL.md": {
+      "source": "obra/superpowers",
+      "source_path": "skills/test-driven-development/SKILL.md",
+      "source_sha": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+      "sha256_copied": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d"
+    },
+    "skills/test-driven-development/writing-good-tests.md": {
+      "source": "obra/superpowers",
+      "source_path": "skills/test-driven-development/writing-good-tests.md",
+      "source_sha": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+      "sha256_copied": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1"
+    },
+    "skills/verification-before-completion/SKILL.md": {
+      "source": "obra/superpowers",
+      "source_path": "skills/verification-before-completion/SKILL.md",
+      "source_sha": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+      "sha256_copied": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3"
+    },
+    "skills/diagnosing-bugs/SKILL.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/diagnosing-bugs/SKILL.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "9168404abda0967a5d32977e3498cd95fda6807018852f3de736a78357c82b40"
+    },
+    "skills/diagnosing-bugs/scripts/hitl-loop.template.sh": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/diagnosing-bugs/scripts/hitl-loop.template.sh",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "35103539fc36873eea36074769ad454f9379d6fc8b2dc0e26ce987fd3bfe5503"
+    },
+    "skills/code-review/SKILL.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/code-review/SKILL.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "47f4e52c21694def9c7c11cbfbf891ca35eac7a93e395797515be3c8a409ae50"
+    },
+    "skills/pr/SKILL.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/pr/SKILL.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "ab63f1cf78647389edcd386c9427c5dfca27ed2836930c24773ffee834c19bcd"
+    },
+    "skills/pr/CREDITS.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/pr/CREDITS.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "a7a087127665d7298a72280ef6e19c41ad8404523712a788c8dc3ab414bc2497"
+    },
+    "skills/writing-for-agents/SKILL.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/productivity/writing-for-agents/SKILL.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "551adca942227b44192edba88acd4e8db911f0121ce58ad16944ccf6a896a74a"
+    },
+    "skills/writing-for-agents/SKILL-MECHANICS.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/productivity/writing-for-agents/SKILL-MECHANICS.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059"
+    },
+    "skills/grill-with-docs/SKILL.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/grill-with-docs/SKILL.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "7de372c13488f1ee96cc11cd8907b56b6809cc93eef776eeddd37de6b6cbe3fe"
+    },
+    "skills/grilling/SKILL.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/productivity/grilling/SKILL.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2"
+    },
+    "skills/domain-modeling/SKILL.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/domain-modeling/SKILL.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "7b925d7b1e341a2eeae33ad68a8a8c0ab889a38ddd22a7598e4c240e5a7556a3"
+    },
+    "skills/domain-modeling/GLOSSARY-FORMAT.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/domain-modeling/GLOSSARY-FORMAT.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "21dcc40cdec8e151a829b98ab1517c1867bc444e3665134a98c6983411996801"
+    },
+    "skills/domain-modeling/ADR-FORMAT.md": {
+      "source": "mattpocock/skills",
+      "source_path": "skills/engineering/domain-modeling/ADR-FORMAT.md",
+      "source_sha": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
+      "sha256_copied": "944c92aa790e8fbdc9199640b170979abb8a34ba8d0fe18c2a01a63bce140ca0"
+    },
+    "skills/how/SKILL.md": {
+      "source": "cursor/plugins (pstack)",
+      "source_path": "pstack/skills/how/SKILL.md",
+      "source_sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "sha256_copied": "d31805589c7f6a63a6db6c9fadebbd79fb9660682cf1654e9b2e5e1e7cd30bc0"
+    },
+    "skills/how/references/explainer-prompt.md": {
+      "source": "cursor/plugins (pstack)",
+      "source_path": "pstack/skills/how/references/explainer-prompt.md",
+      "source_sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "sha256_copied": "ddb89cebefc24e2b54517a331aedfe045b6971e101f45c71b8cef4cccff45bff"
+    },
+    "skills/how/references/explorer-prompt.md": {
+      "source": "cursor/plugins (pstack)",
+      "source_path": "pstack/skills/how/references/explorer-prompt.md",
+      "source_sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "sha256_copied": "a3b44a6e5bb16a6d4d1cac19db8ed5322ffd5f5f5d45baca4e73990ca096f8be"
+    },
+    "skills/interrogate/SKILL.md": {
+      "source": "cursor/plugins (pstack)",
+      "source_path": "pstack/skills/interrogate/SKILL.md",
+      "source_sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "sha256_copied": "59d498c3e9848a24b2d105eb3f05b808aa4152adf4cb1de7bbb6aff4f4cd9b68"
+    },
+    "skills/interrogate/references/rubric.md": {
+      "source": "cursor/plugins (pstack)",
+      "source_path": "pstack/skills/interrogate/references/rubric.md",
+      "source_sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "sha256_copied": "a85aa801abbaf14434f00579440abc0d8e2723227ba8bf57de7cca8d6e7d2f25"
+    },
+    "skills/interrogate/references/code-quality-review.md": {
+      "source": "cursor/plugins (pstack)",
+      "source_path": "pstack/skills/interrogate/references/code-quality-review.md",
+      "source_sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "sha256_copied": "79162fda183eafd40d51661fbb5e151c7ba250f89e506ba17f5bd135dcbd50a8"
+    },
+    "skills/interrogate/references/reviewer-prompt.md": {
+      "source": "cursor/plugins (pstack)",
+      "source_path": "pstack/skills/interrogate/references/reviewer-prompt.md",
+      "source_sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "sha256_copied": "e0598e254792b56de39bb16b1e6db559b03a522fdc54b98f942d254090920ae6"
+    },
+    "skills/interrogate/references/lead-judgment.md": {
+      "source": "cursor/plugins (pstack)",
+      "source_path": "pstack/skills/interrogate/references/lead-judgment.md",
+      "source_sha": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70",
+      "sha256_copied": "6e5bdf5670eb34017692e9b6c546f36ac7552e6bb9f3f2f3429164fcc46a9361"
+    }
+  },
+  "dest_sha256": {
+    ".claude-plugin/plugin.json": "fa4fb14b59013fac9b813fd7f1c2bba7c431b380b528ff13a61069d86b1bd273",
+    ".codex-plugin/plugin.json": "4f10ac74f257d6b040124f7fd3243198d3431ccb90e5606088df78098871647a",
+    ".cursor-plugin/plugin.json": "cbc4c5e7e0521da349073014046103cf5fb3580e1cbc0249fcdae20dad6460d1",
+    "LICENSE": "7fce1ee5b8a12918fdc25342b1e8e348c1f7cf588cf6d9224767dd54468cfb3c",
+    "README.md": "6612c8b8327886fc418dd7b99537d33def6efc47fc0a209c0589ca599cd2a178",
+    "SECURITY.md": "cfe20c4a4c4cc0ac8a5cc36a3734da229bded82f8802979d0c14add562857d30",
+    "THIRD_PARTY.md": "445347c1bf11497e49e8d5efa2bcd41552b157bcdd87194aa0d644635335fc27",
+    "assets/logo.png": "ef4e94b67a2078cb98271c625970a242eac59da63a389fa35b5ed30cb16ac5ed",
+    "assets/logo.svg": "a7c34f1ca9a491e95409d8dfb577539cce5b5a1ad4e46d79b3785b806642922d",
+    "rules/safety-overrides.mdc": "d55aad7cc69d8f9272b713c5ec4873e118d6e04a65c7e08c4304d33aa43b105f",
+    "skills/code-review/SKILL.md": "6667095930e1faa230c232db8fbb3f3eff19a1fa0dfc9fea8bc7dca2aebdbe23",
+    "skills/diagnosing-bugs/SKILL.md": "3cc67527b27218066fdce7754a7c9b8e1017714408b173ce5b9a1f0f1d19644e",
+    "skills/diagnosing-bugs/scripts/hitl-loop.template.sh": "35103539fc36873eea36074769ad454f9379d6fc8b2dc0e26ce987fd3bfe5503",
+    "skills/domain-modeling/ADR-FORMAT.md": "944c92aa790e8fbdc9199640b170979abb8a34ba8d0fe18c2a01a63bce140ca0",
+    "skills/domain-modeling/GLOSSARY-FORMAT.md": "21dcc40cdec8e151a829b98ab1517c1867bc444e3665134a98c6983411996801",
+    "skills/domain-modeling/SKILL.md": "3fe021ee257d772847160d6a4e4a87cabc47529b5b3920957144797f1cef7f65",
+    "skills/grill-with-docs/SKILL.md": "ce712e63dcb7cd64d82f9aa65a8ed0c3a3f60cd4de36cd8edababdfb00b568a1",
+    "skills/grilling/SKILL.md": "9f0fda00552e01e357bb5f063fcbc8d914819afe263496fd00f8f6b52a4ddaf0",
+    "skills/how/SKILL.md": "60437496816eba371b7128c86297781e077979c597f5237f745968a446b883e8",
+    "skills/how/references/explainer-prompt.md": "ddb89cebefc24e2b54517a331aedfe045b6971e101f45c71b8cef4cccff45bff",
+    "skills/how/references/explorer-prompt.md": "a3b44a6e5bb16a6d4d1cac19db8ed5322ffd5f5f5d45baca4e73990ca096f8be",
+    "skills/interrogate/SKILL.md": "ab78a346310170840146b1ae076feab23ecfd5ee561d0212e7b6a581883dcf09",
+    "skills/interrogate/references/code-quality-review.md": "79162fda183eafd40d51661fbb5e151c7ba250f89e506ba17f5bd135dcbd50a8",
+    "skills/interrogate/references/lead-judgment.md": "6e5bdf5670eb34017692e9b6c546f36ac7552e6bb9f3f2f3429164fcc46a9361",
+    "skills/interrogate/references/reviewer-prompt.md": "e0598e254792b56de39bb16b1e6db559b03a522fdc54b98f942d254090920ae6",
+    "skills/interrogate/references/rubric.md": "a85aa801abbaf14434f00579440abc0d8e2723227ba8bf57de7cca8d6e7d2f25",
+    "skills/pr/CREDITS.md": "a7a087127665d7298a72280ef6e19c41ad8404523712a788c8dc3ab414bc2497",
+    "skills/pr/SKILL.md": "84461919d38b156d9afa30ec36472757764053763a537326654ecc98cbbcabd7",
+    "skills/test-driven-development/SKILL.md": "64eac53fda6bf4af5ef7684159095ffb61d1ca8cbe7faa4c56e709ab7c57b201",
+    "skills/test-driven-development/writing-good-tests.md": "94ed93cf5645a3cba0f7063409d97e572141ab6d2f9d68c24d317f1f1e1f260f",
+    "skills/ticket-pipeline/SKILL.md": "9e422d28e0e483636de85e3616540fa9e09af1a65b55813a9ac349ef93dade73",
+    "skills/verification-before-completion/SKILL.md": "ae18f60a064717f798cd9c7a98a339d780c651b2932093e3884a05a8379802b3",
+    "skills/workflow-profile/SKILL.md": "b37ff7f309b8ded9dc3e7e6c391d516d1763cb07458cf9db4b76ab3dea756812",
+    "skills/writing-for-agents/SKILL-MECHANICS.md": "c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059",
+    "skills/writing-for-agents/SKILL.md": "93720a5d3f01458d5b165a3cf4fd83befc4c8ba5bcfb50552033c4146f392927",
+    "skills/writing-plans/SKILL.md": "24e1f5d50d5bc7cbe67a14eb33381425b2ecbd66cf272583c83007ba0d1db9d4"
+  }
+}
