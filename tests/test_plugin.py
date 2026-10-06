@@ -64,9 +64,20 @@ def test_codex_interface() -> None:
     iface = data["interface"]
     assert iface["displayName"] == "Superstacks"
     assert len(iface["shortDescription"]) <= 30
-    assert iface["capabilities"] == []
+    assert iface["category"] == "Developer Tools"
+    assert iface["capabilities"] == [
+        "Plan in the PR body",
+        "TDD and verify-loop",
+        "Two-axis code review",
+        "Draft PRs only",
+    ]
+    assert 1 <= len(iface["defaultPrompt"]) <= 3
+    assert all(isinstance(item, str) and 0 < len(item) <= 128 for item in iface["defaultPrompt"])
+    assert "screenshots" not in iface
     assert iface["composerIcon"] == "./assets/icon.png"
     assert iface["logo"] == "./assets/logo.png"
+    notes = data["extensions"]["com.openai"]["publication"]["release_notes"]
+    assert isinstance(notes, str) and notes.strip()
 
 
 def test_marketplaces() -> None:
@@ -75,6 +86,10 @@ def test_marketplaces() -> None:
     agents_path = ROOT / ".agents" / "plugins" / "marketplace.json"
     agents = json.loads(agents_path.read_text(encoding="utf-8"))
     assert claude["plugins"][0]["source"] == "./plugins/superstacks"
+    assert claude["metadata"]["description"] == (
+        "Lean MIT skill stack for coding agents: plans, TDD, verify-loop, "
+        "constraints, review, PRs, and ticket pipelines."
+    )
     assert cursor["plugins"][0]["source"] == "plugins/superstacks"
     source = agents["plugins"][0]["source"]
     assert source == {"source": "local", "path": "./plugins/superstacks"}
@@ -140,6 +155,11 @@ def test_build_zips(tmp_path: Path) -> None:
     skill_zip = tmp_path / "writing-plans.zip"
     with zipfile.ZipFile(skill_zip) as zf:
         assert "writing-plans/SKILL.md" in zf.namelist()
+    flat_zip = tmp_path / "flat" / "writing-plans.zip"
+    with zipfile.ZipFile(flat_zip) as zf:
+        names = zf.namelist()
+        assert "SKILL.md" in names
+        assert "writing-plans/SKILL.md" not in names
     plugin_zip = tmp_path / "superstacks-plugin.zip"
     with zipfile.ZipFile(plugin_zip) as zf:
         assert "superstacks/.codex-plugin/plugin.json" in zf.namelist()

@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_DIR = ROOT / "plugins" / "superstacks"
 PLUGIN_NAME = "superstacks"
-PLUGIN_VERSION = "6.1.0"
+PLUGIN_VERSION = "6.1.1"
 MAX_NAME = 64
 MAX_DESC = 200
 MAX_NON_IMAGE = 256 * 1024
@@ -191,12 +191,32 @@ def check_manifests() -> list[str]:
             errors.append(f"codex shortDescription longer than {MAX_SHORT_DESC}")
         if iface.get("displayName") != "Superstacks":
             errors.append("codex interface.displayName must be Superstacks")
-        if iface.get("capabilities") != []:
-            errors.append("codex capabilities must be []")
+        if iface.get("category") != "Developer Tools":
+            errors.append('codex category must be "Developer Tools"')
+        caps = iface.get("capabilities")
+        if not isinstance(caps, list) or not caps or any(
+            not isinstance(item, str) or not item.strip() for item in caps
+        ):
+            errors.append("codex capabilities must be a non-empty string array")
+        prompts = iface.get("defaultPrompt")
+        if not isinstance(prompts, list) or not (1 <= len(prompts) <= 3):
+            errors.append("codex defaultPrompt must be 1-3 strings")
+        elif any(not isinstance(item, str) or not item.strip() or len(item) > 128 for item in prompts):
+            errors.append("codex defaultPrompt entries must be non-empty and at most 128 chars")
+        if iface.get("screenshots"):
+            errors.append("codex screenshots must be omitted")
         for key in ("composerIcon", "logo"):
             value = str(iface.get(key, ""))
             if not value.startswith("./"):
                 errors.append(f"codex interface.{key} must start with ./")
+        openai_ext = codex.get("extensions", {})
+        if not isinstance(openai_ext, dict):
+            openai_ext = {}
+        openai = openai_ext.get("com.openai", {})
+        publication = openai.get("publication", {}) if isinstance(openai, dict) else {}
+        notes = publication.get("release_notes") if isinstance(publication, dict) else None
+        if not isinstance(notes, str) or not notes.strip():
+            errors.append("codex extensions.com.openai.publication.release_notes is required")
     return errors
 
 
@@ -220,6 +240,9 @@ def check_marketplaces() -> list[str]:
             errors.append(f"{label} plugin name must be {PLUGIN_NAME}")
         if entry.get("source") != source:
             errors.append(f"{label} source must be {source}")
+    meta = claude.get("metadata")
+    if not isinstance(meta, dict) or not str(meta.get("description", "")).strip():
+        errors.append("claude marketplace missing metadata.description")
     errors.extend(_check_ident(str(agents.get("name", "")), "agents marketplace name"))
     plugins = agents.get("plugins")
     if not isinstance(plugins, list) or not plugins:

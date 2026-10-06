@@ -4,6 +4,9 @@
     "name": "Kunanon Jarat",
     "email": "fronk.kunanon@gmail.com"
   },
+  "metadata": {
+    "description": "Lean MIT skill stack for coding agents: plans, TDD, verify-loop, constraints, review, PRs, and ticket pipelines."
+  },
   "plugins": [
     {
       "name": "superstacks",

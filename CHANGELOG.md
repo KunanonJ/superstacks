@@ -5,6 +5,20 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.1.1] - 2026-10-06
+
+### Changed
+
+- Claude marketplace `metadata.description` so `claude plugin validate --strict` passes for the marketplace as well as the plugin.
+- Truthful wording for optional local helper scripts a skill may tell the agent to run (`git diff`/`git log`, a user-supplied verify-loop command, an existing Playwright install). The plugin makes no network calls, collects no telemetry, and does not read credentials.
+- Plugin README logo uses Markdown instead of HTML.
+- Codex listing: category Developer Tools, filled capabilities, three `defaultPrompt` entries, `extensions.com.openai.publication.release_notes`, and a `.codexignore`.
+- ZIP builder also emits `dist/flat/` per-skill archives with `SKILL.md` at the zip root.
+
+### Removed
+
+- Committed `tests/__pycache__` bytecode.
+
 ## [6.1.0] - 2026-10-06
 
 ### Added
@@ -32,5 +46,6 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 - The v5 aggregated skill catalog (archived as git tag `archive/v5-catalog`).
 
+[6.1.1]: https://github.com/KunanonJ/superstacks/compare/v6.1.0...v6.1.1
 [6.1.0]: https://github.com/KunanonJ/superstacks/compare/v6.0.0...v6.1.0
 [6.0.0]: https://github.com/KunanonJ/superstacks/compare/archive/v5-catalog...v6.0.0
