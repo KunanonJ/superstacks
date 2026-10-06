@@ -26,7 +26,7 @@ def test_plugin_name_matches_folder() -> None:
         data = json.loads((PLUGIN / rel).read_text(encoding="utf-8"))
         assert data["name"] == "superstacks"
         assert data["displayName"] == "Superstacks"
-        assert data["version"] == "6.0.0"
+        assert data["version"] == plugin_lint.PLUGIN_VERSION
 
 
 def test_no_root_plugin_json() -> None:
@@ -122,6 +122,7 @@ def test_build_zips(tmp_path: Path) -> None:
     names = {path.name for path in written}
     assert "superstacks-plugin.zip" in names
     assert "writing-plans.zip" in names
+    assert "verify-loop.zip" in names
     skill_zip = tmp_path / "writing-plans.zip"
     with zipfile.ZipFile(skill_zip) as zf:
         assert "writing-plans/SKILL.md" in zf.namelist()

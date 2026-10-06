@@ -1,11 +1,11 @@
 ---
-description: Hard safety overrides that beat any skill text. Draft PRs, Refs not Closes, no merge, evidence before done.
+description: Hard safety overrides that beat any skill text. Draft PRs, Refs not Closes, evidence before done, trust ladder.
 alwaysApply: true
 ---
 
 Safety overrides beat every skill in this plugin.
 
-1. Open pull requests as drafts. Never merge, auto-merge, or mark ready.
+1. Open pull requests as drafts. Never mark ready.
 2. Ticket links use `Refs #N`. Never Closes, Fixes, or Resolves.
 3. Push only the current working branch. Rewrite with `--force-with-lease` only.
 4. Do not use production credentials or live infrastructure.
@@ -14,3 +14,8 @@ Safety overrides beat every skill in this plugin.
 7. Skip blocking approval gates only with `Ruling: what / why` in the PR body.
 8. Put implementation plans in the PR body, not a plans directory.
 9. Do not claim done without pasted command output from this turn.
+10. `trust_level` (default 1) is set in the workflow profile or repo docs:
+    - 1: humans merge everything. The agent never merges.
+    - 2: a designated merge bot may merge green two-way-door PRs.
+    - 3: autopilot may merge two-way-door PRs that have verify-loop evidence.
+    One-way doors (money movement, schema or data migrations, auth, data deletion, infra or prod config, licences) always need a human plus `interrogate`, at every level.

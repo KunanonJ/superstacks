@@ -10,17 +10,31 @@ metadata:
     url: "https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md"
 ---
 
+Run the checker. Do not reason about section names or ticket-ref wording:
+
+```text
+python <this-skill>/scripts/check_pr_body.py BODY.md
+```
+
+Fix whatever the script prints. The body is not ready until exit 0.
+
 Use this template for writing the PR body:
 
 ```markdown
+Refs #N
+
+## Plan
+
+<what will change and how we will know>
+
 ## Summary
 
 <diagram, diff-sketch, or tree>
 
 ## Evidence
 
-- **Before:** <screenshot/output/failing test run>
-  **After:** <screenshot/output/passing test run>
+- **Before:** `VERIFY_FAIL` output from verify-loop
+  **After:** `VERIFY_PASS` output from verify-loop
 
 ## Merge Danger
 
@@ -35,7 +49,11 @@ Use this template for writing the PR body:
 
 ## Sections
 
-Skip all preambles and keep prose brief. Use the user's domain language from `GLOSSARY.md`.
+Skip all preambles and keep prose brief. Use the user's domain language from `GLOSSARY.md`. Ticket links are `Refs #N` only.
+
+### Plan
+
+Short enough that `scripts/check_pr_body.py` sees a non-empty `## Plan` section: the change, the verify-loop command, and the door type.
 
 ### Summary
 
@@ -158,11 +176,11 @@ You may use one of these, you may use several, it is unlikely you will use all o
 
 ### Evidence
 
-Concrete evidence that the change works. Show a before and after.
+Concrete evidence that the change works. Show a before and after. Paste `VERIFY_FAIL` then `VERIFY_PASS` from the `verify-loop` runner. The checker requires those tokens.
 
 Screenshots are S-tier - when the environment is set up for it and the change is visual.
 
-Execution-based evidence is A-tier. Test results, console output. Show the exact test that now fails and passes, using pseudocode.
+Execution-based evidence is A-tier. Test results, console output. Show the exact test that now fails and passes, using the runner output, not a paraphrase.
 
 ### Merge Danger
 

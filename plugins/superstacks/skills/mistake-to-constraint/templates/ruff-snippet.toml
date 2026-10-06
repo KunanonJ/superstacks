@@ -1,0 +1,8 @@
+# Prefer an existing ruff selector over a custom plugin.
+# This snippet is documentation for the consuming repo; it does not install ruff.
+
+[tool.ruff.lint]
+extend-select = ["E", "F"]
+
+# If no selector covers the mistake, add a regression test and a semgrep rule
+# instead of a prompt-only rule.

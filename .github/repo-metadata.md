@@ -4,9 +4,9 @@ Suggested GitHub About fields after the repo rename to `superstacks`.
 
 ## Description
 
-Lean MIT skill stack for coding agents: plans, TDD, verification, review, PRs, debugging, and ticket pipelines.
+Lean MIT skill stack for coding agents: plans, TDD, verify-loop, constraints, review, PRs, and ticket pipelines.
 
-(110 characters)
+(under 120 characters)
 
 ## Homepage
 

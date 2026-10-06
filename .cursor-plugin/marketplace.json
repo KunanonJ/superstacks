@@ -5,13 +5,13 @@
     "email": "fronk.kunanon@gmail.com"
   },
   "metadata": {
-    "description": "Use for planning, TDD, verification, code review, PRs, debugging, design grilling, and ticket pipelines. Lean MIT skill stack for coding agents."
+    "description": "Use for planning, TDD, verification loops, constraints, gardening, review, PRs, debugging, and ticket pipelines. Lean MIT skill stack for coding agents."
   },
   "plugins": [
     {
       "name": "superstacks",
       "source": "plugins/superstacks",
-      "description": "Use for planning, TDD, verification, code review, PRs, debugging, design grilling, and ticket pipelines. Lean MIT skill stack for coding agents."
+      "description": "Use for planning, TDD, verification loops, constraints, gardening, review, PRs, debugging, and ticket pipelines. Lean MIT skill stack for coding agents."
     }
   ]
 }

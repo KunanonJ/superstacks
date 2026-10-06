@@ -1,6 +1,6 @@
 # Superstacks
 
-Superstacks is a small, MIT-licensed plugin of coding-agent skills. It covers discovery, implementation plans, test-driven development, verification, two-axis review, draft pull requests, optional adversarial review, and design grilling. The pack is meant to stay readable, vendor-pinned, and safe to install from a public marketplace listing.
+Superstacks is a small, MIT-licensed plugin of coding-agent skills. It covers discovery, implementation plans, test-driven development, a verify-loop, two-axis review, draft pull requests, optional adversarial review, design grilling, and coordinator skills for constraints, intake, gardening, and sampling.
 
 This plugin does not ship MCP servers, hooks, commands, or custom agents. Skills are markdown plus a few text helpers. Nothing in the pack runs in the background.
 
@@ -25,9 +25,9 @@ Per-skill ZIPs use a `<skill>/SKILL.md` layout so they upload cleanly. The plugi
 
 ## Skills
 
-User-invoked skills (`disable-model-invocation: true`): `how`, `grill-with-docs`, `interrogate`, `ticket-pipeline`, `workflow-profile`.
+User-invoked skills (`disable-model-invocation: true`): `how`, `grill-with-docs`, `interrogate`, `ticket-pipeline`, `workflow-profile`, `mistake-to-constraint`, `steer-miner`, `intake-triage`, `gardening`, `sample-review`.
 
-Model-invoked: `writing-plans`, `test-driven-development`, `verification-before-completion`, `diagnosing-bugs`, `code-review`, `pr`, `writing-for-agents`, `grilling`, `domain-modeling`.
+Model-invoked: `verify-loop`, `writing-plans`, `test-driven-development`, `verification-before-completion`, `diagnosing-bugs`, `code-review`, `pr`, `writing-for-agents`, `grilling`, `domain-modeling`.
 
 Always-on rule: `rules/safety-overrides.mdc`.
 

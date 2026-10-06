@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_DIR = ROOT / "plugins" / "superstacks"
 PLUGIN_NAME = "superstacks"
+PLUGIN_VERSION = "6.1.0"
 MAX_NAME = 64
 MAX_DESC = 200
 MAX_NON_IMAGE = 256 * 1024
@@ -52,6 +53,11 @@ USER_INVOKED = {
     "grill-with-docs",
     "ticket-pipeline",
     "workflow-profile",
+    "mistake-to-constraint",
+    "steer-miner",
+    "intake-triage",
+    "gardening",
+    "sample-review",
 }
 
 
@@ -110,8 +116,11 @@ def _check_ident(name: str, where: str) -> list[str]:
 def _iter_plugin_files() -> list[Path]:
     files: list[Path] = []
     for path in PLUGIN_DIR.rglob("*"):
-        if path.is_file():
-            files.append(path)
+        if not path.is_file():
+            continue
+        if "__pycache__" in path.parts or path.suffix in {".pyc", ".pyo"}:
+            continue
+        files.append(path)
     return files
 
 
@@ -138,8 +147,8 @@ def check_manifests() -> list[str]:
         errors.extend(_check_ident(str(data.get("name", "")), f"{label} plugin.json name"))
         if data.get("name") != PLUGIN_NAME:
             errors.append(f"{label} plugin.json name must equal folder {PLUGIN_NAME}")
-        if data.get("version") != "6.0.0":
-            errors.append(f"{label} plugin.json version must be 6.0.0")
+        if data.get("version") != PLUGIN_VERSION:
+            errors.append(f"{label} plugin.json version must be {PLUGIN_VERSION}")
         desc = str(data.get("description", ""))
         if len(desc) > MAX_DESC:
             errors.append(f"{label} plugin.json description longer than {MAX_DESC}")

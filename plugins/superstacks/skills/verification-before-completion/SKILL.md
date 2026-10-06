@@ -20,6 +20,8 @@ NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
 
 If you haven't run the verification command in this message, you cannot claim it passes.
 
+Use `verify-loop` to define that command before writing code. Run the wrappers in `verify-loop/scripts/` (`verify.py`, `verify.sh`, or `check-snapshot-console.cjs`). Paste the runner's `VERIFY_PASS` or `VERIFY_FAIL` line. Do not copy errors between tools by hand.
+
 ## The Gate Function
 
 ```
