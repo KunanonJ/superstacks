@@ -1,5 +1,7 @@
 # Superstacks
 
+<img src="plugins/superstacks/assets/logo.svg" alt="Superstacks" width="96" height="96">
+
 Lean MIT skill stack for coding agents: discovery, plans, TDD, verification loops, review, draft PRs, and ticket pipelines.
 
 [![CI](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml/badge.svg)](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml)
@@ -28,7 +30,7 @@ Themes drawn from the public Matt Pocock × Poteto conversation: [YouTube](https
 
 ## Quick start
 
-Pick one row. The owner will rename the GitHub repo to `superstacks`; use that name in the commands.
+Pick one row. The GitHub repository is [`KunanonJ/superstacks`](https://github.com/KunanonJ/superstacks).
 
 | Surface | How |
 | --- | --- |

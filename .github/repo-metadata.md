@@ -1,6 +1,6 @@
 # GitHub repository metadata
 
-Suggested GitHub About fields after the repo rename to `superstacks`.
+Suggested GitHub About fields for [`KunanonJ/superstacks`](https://github.com/KunanonJ/superstacks).
 
 ## Description
 
@@ -29,3 +29,7 @@ https://github.com/KunanonJ/superstacks
 - domain-modeling
 - safety
 - draft-pr
+
+## Social preview
+
+Upload `.github/social-preview.png` (1280×640) by hand in Settings → General → Social preview. This repository does not set that image through the API.

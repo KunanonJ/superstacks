@@ -65,8 +65,8 @@ def test_codex_interface() -> None:
     assert iface["displayName"] == "Superstacks"
     assert len(iface["shortDescription"]) <= 30
     assert iface["capabilities"] == []
-    assert iface["composerIcon"].startswith("./")
-    assert iface["logo"].startswith("./")
+    assert iface["composerIcon"] == "./assets/icon.png"
+    assert iface["logo"] == "./assets/logo.png"
 
 
 def test_marketplaces() -> None:
@@ -98,18 +98,32 @@ def test_plugin_readme_word_count() -> None:
     assert len(words) >= 40
 
 
+def _png_size(path: Path) -> tuple[int, int]:
+    data = path.read_bytes()
+    assert data[:8] == b"\x89PNG\r\n\x1a\n"
+    return struct.unpack(">II", data[16:24])
+
+
 def test_logo_assets() -> None:
     svg = PLUGIN / "assets" / "logo.svg"
     png = PLUGIN / "assets" / "logo.png"
+    icon = PLUGIN / "assets" / "icon.png"
+    icon64 = PLUGIN / "assets" / "icon-64.png"
+    icon16 = PLUGIN / "assets" / "icon-16.png"
     assert svg.is_file()
     assert png.is_file()
-    assert png.stat().st_size > 32
-    data = png.read_bytes()
-    assert data[:8] == b"\x89PNG\r\n\x1a\n"
-    width, height = struct.unpack(">II", data[16:24])
-    assert width >= 48 and height >= 48
-    assert width == height
-    assert 'viewBox="0 0 128 128"' in svg.read_text(encoding="utf-8")
+    assert icon.is_file()
+    assert icon64.is_file()
+    assert icon16.is_file()
+    width, height = _png_size(png)
+    assert (width, height) == (512, 512)
+    assert _png_size(icon) == (256, 256)
+    assert _png_size(icon64) == (64, 64)
+    assert _png_size(icon16) == (16, 16)
+    assert 'viewBox="0 0 512 512"' in svg.read_text(encoding="utf-8")
+    social = ROOT / ".github" / "social-preview.png"
+    assert social.is_file()
+    assert _png_size(social) == (1280, 640)
 
 
 def test_no_banned_plugin_dirs() -> None:

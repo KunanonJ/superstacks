@@ -187,3 +187,7 @@ Execution-based evidence is A-tier. Test results, console output. Show the exact
 Describe whether it's a one-way or two-way door. You can walk back through two-way doors, but not one-way doors. A PR that is cheap to roll back is lower risk. Changes that involve destructive actions or hard-to-reverse decisions are one-way doors.
 
 The blast radius is the potential impact or scope of the changes introduced by this PR. Consider all possibilities. Examples are layout shift, breakages for consumers, mobile responsiveness, etc.
+
+### Stacked pull requests
+
+One concern per layer. A layer may depend only on itself or on a lower layer. Open the next layer while the lower one is in review. Merge bottom-up. When merging through the API, use the asynchronous merge endpoint for stacks. Prefer `gh stack` for cascading rebases. If stacks are unavailable, chain pull requests with plain base-branch targeting.

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+<title id="title">superstacks</title>
+<desc id="desc">GitHub social preview. A02 Crisp mark on a dark field with the superstacks wordmark and tagline. Owner uploads the PNG sibling by hand in repository settings.</desc>
+<rect width="1280" height="640" fill="#0B1220"/>
+<g transform="translate(144 152) scale(0.65625)">
+<rect width="512" height="512" rx="104" fill="#2563EB"/>
+<g fill="#FFFFFF">
+<rect x="80" y="80" width="288" height="96" rx="16"/>
+<rect x="144" y="208" width="288" height="96" rx="16"/>
+<rect x="80" y="336" width="288" height="96" rx="16"/>
+</g>
+</g>
+<text x="640" y="310" fill="#FFFFFF" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="72" font-weight="600">superstacks</text>
+<text x="640" y="368" fill="#677586" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="22" font-weight="400">Lean, verification-first agent skills</text>
+</svg>

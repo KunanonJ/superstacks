@@ -35,3 +35,12 @@ Re-run until the script prints `missing: 0`.
 - No production credentials, live infrastructure, runtime package installs, or secret-using CI jobs.
 - No tracker or chat writes from a ticket.
 - Skip a blocking approval gate only with `Ruling: what / why` in the PR body.
+
+## Stacked pull requests
+
+When one ticket is too large for a single reviewable PR, split it into layers:
+
+- One concern per layer. Dependencies belong in the same layer or a lower one.
+- Open the next layer while the lower one is still in review.
+- Merge bottom-up. When merging through the API, use the asynchronous merge endpoint for stacks.
+- Prefer `gh stack` for cascading rebases. If stacks are unavailable, chain pull requests with plain base-branch targeting.

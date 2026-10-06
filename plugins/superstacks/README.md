@@ -1,5 +1,7 @@
 # Superstacks
 
+<img src="assets/logo.svg" alt="Superstacks" width="96" height="96">
+
 Superstacks is a small, MIT-licensed plugin of coding-agent skills. It covers discovery, implementation plans, test-driven development, a verify-loop, two-axis review, draft pull requests, optional adversarial review, design grilling, and coordinator skills for constraints, intake, gardening, and sampling.
 
 This plugin does not ship MCP servers, hooks, commands, or custom agents. Skills are markdown plus a few text helpers. Nothing in the pack runs in the background.
@@ -10,7 +12,7 @@ Nothing. Superstacks contains instructions and static assets only. It does not s
 
 ## Install
 
-The GitHub repository name will be `KunanonJ/superstacks`. Use that name in the commands below after the rename.
+Install from [`KunanonJ/superstacks`](https://github.com/KunanonJ/superstacks).
 
 | Surface | How |
 | --- | --- |
