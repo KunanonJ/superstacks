@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Repository automation: `automerge.yml` (auto-merge for the owner's and Dependabot's pull requests once the required check passes), `release.yml` (tag and release a new plugin version from `main` after the checks pass), and `scripts/release_plan.py`.
+- `DECISIONS.md` with the owner's standing rules and decision log.
+- Contributor rules for pull requests from other people in `CONTRIBUTING.md` and `AGENTS.md`.
+
+No plugin content changed, so the plugin version stays 6.1.1.
+
 ## [6.1.1] - 2026-10-06
 
 ### Changed
