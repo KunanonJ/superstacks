@@ -1,7 +1,7 @@
 {
   "name": "superstacks",
   "displayName": "Superstacks",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "description": "Use for planning, TDD, verification loops, constraints, gardening, review, PRs, debugging, and ticket pipelines. Lean MIT skill stack for coding agents.",
   "author": {
     "name": "Kunanon Jarat",
@@ -43,7 +43,7 @@
   "extensions": {
     "com.openai": {
       "publication": {
-        "release_notes": "6.2.0 adds owner-decisions: merge and ready authority are read from the owner's decision record, with a safe default of human merge."
+        "release_notes": "6.3.0 adds ama: when work is assigned and something is unclear, the agent looks first, then asks the owner plain-language questions with easy options."
       }
     }
   }

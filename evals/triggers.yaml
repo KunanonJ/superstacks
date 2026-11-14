@@ -37,6 +37,14 @@ skills:
     - before asking the owner a question check what they already decided
     - record the owner's decision before acting on it
     - propose a standing rule from repeated decisions
+  ama:
+    - make sign-up faster
+    - improve the onboarding, you decide how
+    - we need something for referrals, not sure what yet
+    - fix the dashboard, it feels wrong
+    # Should NOT trigger (clear, fully specified; the format has no negative list):
+    #   rename the config key retries to max_retries in settings.py and update its two tests
+    #   bump the pinned linter to 1.4.2 and rerun the checks
   workflow-profile:
     - what is trust_level
     - who merges two-way door PRs

@@ -19,14 +19,15 @@ Re-run until the script prints `missing: 0`.
 
 ## Sequence
 
-1. **how** — build a mental model before changing code. Heading: `## How`.
-2. **writing-plans** — plan in the pull request body. Heading: `## Plan`.
-3. **verify-loop** — define the deterministic check, run it red (`VERIFY_FAIL`), then iterate.
-4. **test-driven-development** — if the check is a test: failing test, then minimal code. Heading: `## TDD` (include `red-green`).
-5. **verification-before-completion** — paste fresh `verify-loop` runner output. Heading: `## Evidence`.
-6. **code-review** — Standards and Spec axes on the branch diff. Heading: `## Code review`.
-7. **interrogate** — required for one-way doors (money movement, schema or data migrations, auth, data deletion, infra or prod config, licences). Heading: `## Interrogate`, or write `N/A (two-way door)`.
-8. **pr** — draft pull request body. Run `pr/scripts/check_pr_body.py`. Ticket links are `Refs #N` only.
+1. **ama** — make the assignment clear: look first, ask the owner only what is unclear. No heading needed.
+2. **how** — build a mental model before changing code. Heading: `## How`.
+3. **writing-plans** — plan in the pull request body. Heading: `## Plan`.
+4. **verify-loop** — define the deterministic check, run it red (`VERIFY_FAIL`), then iterate.
+5. **test-driven-development** — if the check is a test: failing test, then minimal code. Heading: `## TDD` (include `red-green`).
+6. **verification-before-completion** — paste fresh `verify-loop` runner output. Heading: `## Evidence`.
+7. **code-review** — Standards and Spec axes on the branch diff. Heading: `## Code review`.
+8. **interrogate** — required for one-way doors (money movement, schema or data migrations, auth, data deletion, infra or prod config, licences). Heading: `## Interrogate`, or write `N/A (two-way door)`.
+9. **pr** — draft pull request body. Run `pr/scripts/check_pr_body.py`. Ticket links are `Refs #N` only.
 
 ## Hard rules (also in safety-overrides)
 
