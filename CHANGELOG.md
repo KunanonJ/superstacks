@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.4.0] - 2026-11-14
+
+### Changed
+
+- `interrogate` (rubric, reviewer prompt, lead judgment, verdict format) and `code-review`: a change that adds or alters a finder or refuser (scanner, inventory, guard, lint rule, drift test, validator) cannot pass on a read of the code. The review needs an independent count or trace and a set of probes (mutants), each marked found or missed. A missed form that exists in real code today is at least high severity; one that does not is recorded as a stated limit.
+- `verification-before-completion`: a "before you say ready" step. Read every comment and review on the PR and its ticket since your last review; a newer failing review or an unanswered finding means not ready. Claims such as none, all, safe and always name their method or are worded as what the check can see.
+- `pr`: the body template gains a `## Review` section (head reviewed, kind of reviewer, comments read). A body with its own line `Class: finder` must name the independent check and the probes in `## Review`; `check_pr_body.py` enforces this and requires nothing new without that line.
+- `patches/*-v6.4.patch` document the edits to the vendored skills; `sources.lock.json` dest hashes updated for the edited files.
+
 ## [6.3.0] - 2026-11-14
 
 ### Added

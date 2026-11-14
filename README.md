@@ -42,7 +42,7 @@ Pick one row. The GitHub repository is [`KunanonJ/superstacks`](https://github.c
 | `npx skills add` | `DISABLE_TELEMETRY=1 npx skills add KunanonJ/superstacks -g -s '*' --copy -y` |
 | Plain copy | Copy `plugins/superstacks/skills/<name>/` into your agent's skills directory |
 
-Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.3.0` tag for you.
+Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.4.0` tag for you.
 
 ## What this plugin runs, sends or fetches
 
