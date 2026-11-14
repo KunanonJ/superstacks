@@ -42,7 +42,7 @@ Pick one row. The GitHub repository is [`KunanonJ/superstacks`](https://github.c
 | `npx skills add` | `DISABLE_TELEMETRY=1 npx skills add KunanonJ/superstacks -g -s '*' --copy -y` |
 | Plain copy | Copy `plugins/superstacks/skills/<name>/` into your agent's skills directory |
 
-Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.1.1` tag for you.
+A version bump on `main` is tagged and released automatically, with the ZIPs from `dist/` attached (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
 ## What this plugin runs, sends or fetches
 
@@ -105,7 +105,7 @@ See [SECURITY.md](SECURITY.md).
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Run `python -m app.plugin_lint` and `python -m pytest` before opening a draft PR.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Run `python -m app.plugin_lint` and `python -m pytest` before opening a pull request. Pull requests from the owner's account merge by themselves when the required check passes; pull requests from other people are safety-reviewed by an agent and then merged by the owner. See [DECISIONS.md](DECISIONS.md).
 
 ## Credits
 

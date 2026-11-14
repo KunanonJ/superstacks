@@ -1,0 +1,84 @@
+name: release
+
+# Tags and releases the plugin version on main once, after the repo's own checks pass.
+# The hourly schedule exists because a merge made with the workflow token does not start
+# other workflows, so the push trigger alone would miss auto-merged pull requests.
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    # Never tag from any ref other than main, including manual runs.
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+
+      - name: Plan
+        id: plan
+        run: |
+          result="$(git ls-remote --tags --refs origin | sed 's#.*refs/tags/##' | python scripts/release_plan.py)"
+          echo "$result"
+          echo "action=${result%% *}" >> "$GITHUB_OUTPUT"
+          version="${result#* }"
+          echo "version=${version%% *}" >> "$GITHUB_OUTPUT"
+
+      - name: Install Python tools
+        if: steps.plan.outputs.action == 'RELEASE'
+        run: python -m pip install -r requirements.txt
+
+      - name: Ruff
+        if: steps.plan.outputs.action == 'RELEASE'
+        run: python -m ruff check app scripts tests
+
+      - name: Plugin linter
+        if: steps.plan.outputs.action == 'RELEASE'
+        run: python -m app.plugin_lint
+
+      - name: Tests
+        if: steps.plan.outputs.action == 'RELEASE'
+        run: python -m pytest
+
+      - name: Archive size
+        if: steps.plan.outputs.action == 'RELEASE'
+        run: python scripts/check_archive_size.py
+
+      - name: Build ZIPs
+        if: steps.plan.outputs.action == 'RELEASE'
+        run: python scripts/build_zips.py
+
+      - name: Create tag and release
+        if: steps.plan.outputs.action == 'RELEASE'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.plan.outputs.version }}
+        run: |
+          # dist/flat/<skill>.zip shares a file name with dist/<skill>.zip, so stage the flat ones as <skill>-flat.zip.
+          mkdir -p dist/assets
+          cp dist/*.zip dist/assets/
+          for f in dist/flat/*.zip; do cp "$f" "dist/assets/$(basename "$f" .zip)-flat.zip"; done
+          notes=".github/release-notes/${TAG}.md"
+          if [ -f "$notes" ]; then
+            notes_args=(--notes-file "$notes")
+          else
+            notes_args=(--generate-notes)
+          fi
+          gh release create "$TAG" --title "$TAG" --target "$GITHUB_SHA" "${notes_args[@]}" dist/assets/*.zip
