@@ -6,7 +6,7 @@ Lean MIT skill stack for coding agents: discovery, plans, TDD, verification loop
 
 [![CI](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml/badge.svg)](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0B1F33.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-6.2.0-2EC4B6.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-6.3.0-2EC4B6.svg)](CHANGELOG.md)
 
 Superstacks is a small plugin, not a giant catalog. It vendors a handful of upstream skills at pinned git SHAs, applies documented patches, and adds a generic ticket pipeline plus hard safety overrides. The GitHub repository name is `KunanonJ/superstacks`.
 
@@ -42,7 +42,7 @@ Pick one row. The GitHub repository is [`KunanonJ/superstacks`](https://github.c
 | `npx skills add` | `DISABLE_TELEMETRY=1 npx skills add KunanonJ/superstacks -g -s '*' --copy -y` |
 | Plain copy | Copy `plugins/superstacks/skills/<name>/` into your agent's skills directory |
 
-Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.2.0` tag for you.
+Attach `dist/` artifacts to a GitHub Release when you cut a version. This repo does not create the `v6.3.0` tag for you.
 
 ## What this plugin runs, sends or fetches
 
@@ -52,6 +52,7 @@ Skills may tell the agent to run optional local helper scripts: `git diff`/`git 
 
 ```mermaid
 flowchart LR
+  ama --> how
   how --> plans[writing-plans]
   plans --> vloop[verify-loop]
   vloop --> tdd[test-driven-development]
@@ -61,7 +62,7 @@ flowchart LR
   optional --> pr[pr draft]
 ```
 
-`ticket-pipeline` is the user-invoked router for that order. `verify-loop` is the extra always-loaded skill: define the check, run it red, then green. `safety-overrides` always apply.
+`ticket-pipeline` is the user-invoked router for that order; `ama` comes first and makes the assignment clear. `verify-loop` is the extra always-loaded skill: define the check, run it red, then green. `safety-overrides` always apply.
 
 Off-pipeline (user-invoked): `mistake-to-constraint`, `steer-miner`, `intake-triage`, `gardening`, `sample-review`.
 
@@ -71,6 +72,7 @@ Off-pipeline (user-invoked): `mistake-to-constraint`, `steer-miner`, `intake-tri
 | --- | --- | --- |
 | verify-loop | model | this repo |
 | owner-decisions | model | this repo |
+| ama | model | this repo |
 | writing-plans | model | obra/superpowers |
 | test-driven-development | model | obra/superpowers |
 | verification-before-completion | model | obra/superpowers |

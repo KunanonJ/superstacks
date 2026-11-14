@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.3.0] - 2026-11-14
+
+### Added
+
+- Model-invoked `ama` (ask me anything): when the owner assigns work and something is unclear, the agent looks first, sorts each open point into ask, assume or look up, and asks only what changes the result. Questions come in batches of at most four, in plain words, with two to four options that say what you get, what it costs and what you give up, one marked Recommended, and a one-letter reply format. Answers are recorded through `owner-decisions`, and a short brief is sent back to confirm. The quality and safety bar is never a question.
+- `ama/templates/QUESTIONS.md` (question sheet and confirming brief) and `ama/scripts/check_questions.py` (sheet validator), with tests.
+
+### Changed
+
+- `ticket-pipeline` lists `ama` first, before discovery. The README pipeline diagram and skills table list it too.
+
 ## [6.2.0] - 2026-11-14
 
 ### Added

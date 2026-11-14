@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_DIR = ROOT / "plugins" / "superstacks"
 PLUGIN_NAME = "superstacks"
-PLUGIN_VERSION = "6.2.0"
+PLUGIN_VERSION = "6.3.0"
 MAX_NAME = 64
 MAX_DESC = 200
 MAX_NON_IMAGE = 256 * 1024
