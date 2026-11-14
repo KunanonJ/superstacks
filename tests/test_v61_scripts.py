@@ -154,3 +154,45 @@ def test_verify_loop_is_model_invoked() -> None:
     assert "verify-loop" not in plugin_lint.USER_INVOKED
     fields = plugin_lint._frontmatter((SKILLS / "verify-loop" / "SKILL.md").read_text(encoding="utf-8"))
     assert fields.get("disable-model-invocation") != "true"
+
+
+_GOOD_BODY = """
+Refs #12
+
+## Plan
+Ship the scanner.
+
+## Evidence
+VERIFY_FAIL
+VERIFY_PASS
+
+## Merge Danger
+**Door:** two-way
+"""
+
+
+def test_check_pr_body_finder_class_needs_independent_check() -> None:
+    mod = _load(SKILLS / "pr" / "scripts" / "check_pr_body.py")
+    # Without the Class line nothing new is required, with or without a Review section.
+    assert mod.check(_GOOD_BODY) == []
+    assert mod.check(_GOOD_BODY + "\n## Review\nHead abc123, fresh agent.\n") == []
+    finder = "Class: finder\n" + _GOOD_BODY
+    # Declared finder class: a Review section is required.
+    assert any("## Review" in e for e in mod.check(finder))
+    # A Review section that names neither the independent check nor probes fails.
+    thin = finder + "\n## Review\nHead abc123, fresh agent. Looks right.\n"
+    errors = mod.check(thin)
+    assert any("independent" in e for e in errors)
+    assert any("probe" in e for e in errors)
+    # Naming both passes.
+    full = finder + (
+        "\n## Review\nHead abc123, fresh agent.\n"
+        "Independent check: counted calls with a plain search, compared per file.\n"
+        "Probes: alias missed, callback found, multi-line found.\n"
+    )
+    assert mod.check(full) == []
+    # An empty Review section fails.
+    assert any("empty" in e for e in mod.check(finder + "\n## Review\n"))
+    # The Class line is matched case-insensitively and only as its own line.
+    assert any("## Review" in e for e in mod.check(_GOOD_BODY.replace("Refs #12", "Refs #12\nclass: Finder")))
+    assert mod.check(_GOOD_BODY.replace("Ship the scanner.", "Not Class: finder here.")) == []
