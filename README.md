@@ -108,7 +108,7 @@ See [SECURITY.md](SECURITY.md).
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Run `python -m app.plugin_lint` and `python -m pytest` before opening a draft PR.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Run `python -m app.plugin_lint` and `python -m pytest` before opening a pull request. Pull requests from the owner's account merge by themselves when the required check passes; pull requests from other people are safety-reviewed by an agent and then merged by the owner. See [DECISIONS.md](DECISIONS.md).
 
 ## Credits
 
