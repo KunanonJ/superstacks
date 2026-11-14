@@ -45,6 +45,12 @@ Refs #N
 **Blast Radius:** <one-word description>
 
 <optional: potential ramifications of merge>
+
+## Review
+
+**Head reviewed:** <commit sha>
+**Reviewer:** <kind: fresh-context agent, second model, human>
+**Comments read:** <yes, every comment and review on the PR and its ticket since the last review>
 ```
 
 ## Sections
@@ -187,6 +193,12 @@ Execution-based evidence is A-tier. Test results, console output. Show the exact
 Describe whether it's a one-way or two-way door. You can walk back through two-way doors, but not one-way doors. A PR that is cheap to roll back is lower risk. Changes that involve destructive actions or hard-to-reverse decisions are one-way doors.
 
 The blast radius is the potential impact or scope of the changes introduced by this PR. Consider all possibilities. Examples are layout shift, breakages for consumers, mobile responsiveness, etc.
+
+### Review
+
+Say which head was reviewed, by what kind of reviewer, and that every comment and review since the last review was read (see `verification-before-completion`).
+
+If the change adds or alters a finder or refuser (a scanner, inventory, guard, lint rule, drift test), put a line `Class: finder` at the top of the body. The `## Review` section must then name the **independent** check (a count or trace made without the code under review) and the **probes** run, each marked found or missed, with whether each missed form exists in the real code today. The checker enforces those two words; without the `Class: finder` line it requires nothing here. See `interrogate`.
 
 ### Stacked pull requests
 

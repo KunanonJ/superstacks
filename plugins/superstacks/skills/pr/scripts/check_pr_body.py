@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Check a PR body for ticket refs, plan, evidence, and risk/door sections. Stdlib only."""
+"""Check a PR body for ticket refs, plan, evidence, and risk/door sections. Stdlib only.
+
+A body with its own line `Class: finder` (a scanner, guard or other change whose job is to
+find or refuse things) also needs a ## Review section naming the independent check and probes.
+"""
 
 from __future__ import annotations
 
@@ -11,6 +15,8 @@ from pathlib import Path
 HEADING_PLAN = re.compile(r"(?im)^#{1,3}\s+Plan\b")
 HEADING_EVIDENCE = re.compile(r"(?im)^#{1,3}\s+Evidence\b")
 HEADING_RISK = re.compile(r"(?im)^#{1,3}\s+(Merge Danger|Risk)\b")
+HEADING_REVIEW = re.compile(r"(?im)^#{1,3}\s+Review\b")
+CLASS_FINDER = re.compile(r"(?im)^\s*Class:\s*finder\b")
 REFS = re.compile(r"(?i)\bRefs\s+#\d+")
 FORBIDDEN_CLOSE = re.compile(r"(?i)\b(Closes|Fixes|Resolves)\s+#\d+")
 DOOR = re.compile(r"(?im)(?:\*\*)?Door:(?:\*\*)?\s*(one-way|two-way)\b")
@@ -52,6 +58,17 @@ def check(text: str) -> list[str]:
         errors.append("risk/door section is empty")
     if not DOOR.search(text):
         errors.append("missing Door: one-way or Door: two-way")
+    if CLASS_FINDER.search(text):
+        review = _section_body(text, HEADING_REVIEW)
+        if review is None:
+            errors.append("Class: finder needs a ## Review section")
+        elif not review:
+            errors.append("## Review section is empty")
+        else:
+            if not re.search(r"(?i)\bindependent\b", review):
+                errors.append("## Review must name the independent check (the word 'independent')")
+            if not re.search(r"(?i)\bprobes?\b", review):
+                errors.append("## Review must list the probes run (the word 'probe')")
     return errors
 
 
