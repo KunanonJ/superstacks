@@ -51,6 +51,10 @@ Don't dismiss findings just because they're uncomfortable. The whole point of ad
 
 Be especially careful about dismissing security findings and correctness bugs. These deserve more scrutiny even when they come from a single model.
 
+## Finders and Refusers
+
+When the change adds or alters a finder or refuser, require the reviewers' Independent Check sections. If a reviewer only read the code, discard its pass: the change is not reviewed for that class until someone runs an independent count and probes. A missed form that exists in the real code today goes in Act On. A missed form that does not exist today goes in Noted, as a stated limit the code should document. Put the surviving method and the probe results in the verdict's Independent Check section.
+
 ## Verdict Calibration
 
 A good verdict is useful, not comprehensive. The user should be able to read the "Act On" section, fix those issues, and ship with confidence. If your "Act On" list has more than 5 items, you're probably not filtering hard enough.

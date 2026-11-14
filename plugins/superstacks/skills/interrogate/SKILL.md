@@ -21,6 +21,8 @@ Identify what to review from context:
 
 Package the diff (or file contents) plus any surrounding context files the reviewers need to understand the code.
 
+Classify the change. A **finder or refuser** is code whose job is to find things or refuse things: a scanner, inventory, guard, lint rule, drift test, validator, allowlist check. Reviewers who read it and its tests tend to pass it, because its blind spots are invisible from inside. If the change adds or alters one, the "Finders and refusers" section of the rubric is mandatory and the verdict carries an Independent Check section.
+
 ## Step 2, State the Intent
 
 Before spawning reviewers, state the intent explicitly. Derive this from:
@@ -45,7 +47,7 @@ Launch all reviewers in a single message using the Task tool. Use the reviewer t
 For each reviewer:
 - `subagent_type`: `generalPurpose`
 - `model`: the configured `interrogate reviewers` entry, or the table default with no configured line. For an `auto` or `inherit-parent` entry, omit `model` so that reviewer runs on the parent model.
-- `readonly`: `true`
+- `readonly`: `true`; for a finder or refuser change, `false`, so the reviewer can run probes, with the instruction to write only inside a scratch directory outside the checkout and to leave the checkout untouched
 
 If the Task tool rejects a configured entry, omit `model` for that reviewer and say so. Do not block the review on a slug issue. Never treat an alias entry as a rejected slug.
 
@@ -106,6 +108,9 @@ Present the verdict in this structure:
 
 ### Dismissed
 [Rejected findings with brief rationale.]
+
+### Independent Check
+[Finder or refuser changes only. The independent method, each probe as found or missed, and for each missed form whether it exists in the real code today. Without this section the change was not reviewed.]
 
 ### Agreement Map
 [Where did models agree, where did they diverge, and what does the pattern of agreement/disagreement tell us?]
