@@ -1,0 +1,13 @@
+diff --git a/plugins/superstacks/skills/code-review/SKILL.md b/plugins/superstacks/skills/code-review/SKILL.md
+index e2bf516..e4e9954 100644
+--- a/plugins/superstacks/skills/code-review/SKILL.md
++++ b/plugins/superstacks/skills/code-review/SKILL.md
+@@ -74,6 +74,8 @@ If the spec is missing, skip the Spec sub-agent and note this in the final repor
+ 
+ ### 5. Aggregate
+ 
++If the diff adds or alters a finder or refuser (a scanner, inventory, guard, lint rule, drift test, validator), reading it is not a pass for that code: its blind spots are invisible from inside. Say so in the report and run `interrogate`, which requires an independent count and probes.
++
+ Present the two reports under `## Standards` and `## Spec` headings, verbatim or lightly cleaned. Do **not** merge or rerank findings, because the two axes are deliberately separate (see _Why two axes_).
+ 
+ End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes: that's the reranking the separation exists to prevent.

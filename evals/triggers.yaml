@@ -10,12 +10,15 @@ skills:
     - claim the bug is fixed
     - tests pass now
     - ready to open the PR
+    - tell the owner this PR is reviewed and green
+    - say that none of the calls run inside a transaction
   ticket-pipeline:
     - run this ticket from discovery to a draft PR
     - which pipeline steps have evidence
   pr:
     - write the pull request body
     - check the PR body sections
+    - write the PR body for a new drift test, with the review section
   mistake-to-constraint:
     - this mistake keeps happening
     - turn the repeated error into a lint rule
@@ -51,6 +54,8 @@ skills:
   interrogate:
     - money movement change
     - schema migration review
+    - review the new scanner, does the guard miss any form
+    - the lint rule passed review, try to break it
   how:
     - explain how this subsystem works before we change it
   test-driven-development:

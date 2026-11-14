@@ -75,3 +75,12 @@ For each security finding, trace the input path through the code and show it.
 - Authentication/authorization gaps in new endpoints
 - Secrets in code, logs, or error messages
 - TOCTOU (time-of-check-time-of-use) in security-critical paths
+
+## Finders and Refusers
+
+Applies when the change adds or alters code whose job is to find things or refuse things: a scanner, inventory, guard, lint rule, drift test, validator. Reading that code and its tests is not a review of it. It agrees with itself, and its blind spots are invisible from inside. Both checks below are mandatory, and you write them yourself:
+
+1. **Independent count or trace.** Count or trace the same thing a different way, without calling or copying the code under review (a plain text search, a different parser, a hand trace of real inputs). Compare per file or per item, not only in total. Every difference is a finding until explained.
+2. **Mutants and fixture probes.** Write throwaway inputs in the forms the code might miss: an alias, an indirection, a callback, a different spelling, a multi-line form. Run the code on them and record each as found or missed. Then break the guarded thing on purpose and confirm the guard fails.
+
+For each missed form, search the real code for it. A missed form that exists in the real code today is a defect of at least high severity (report it as `critical`). A missed form that does not exist today is not a defect: record it as a stated limit of the code, in its own docs or comments.

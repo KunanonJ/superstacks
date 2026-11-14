@@ -1,0 +1,86 @@
+diff --git a/plugins/superstacks/skills/interrogate/SKILL.md b/plugins/superstacks/skills/interrogate/SKILL.md
+index 67e245a..70c7c88 100644
+--- a/plugins/superstacks/skills/interrogate/SKILL.md
++++ b/plugins/superstacks/skills/interrogate/SKILL.md
+@@ -21,6 +21,8 @@ Identify what to review from context:
+ 
+ Package the diff (or file contents) plus any surrounding context files the reviewers need to understand the code.
+ 
++Classify the change. A **finder or refuser** is code whose job is to find things or refuse things: a scanner, inventory, guard, lint rule, drift test, validator, allowlist check. Reviewers who read it and its tests tend to pass it, because its blind spots are invisible from inside. If the change adds or alters one, the "Finders and refusers" section of the rubric is mandatory and the verdict carries an Independent Check section.
++
+ ## Step 2, State the Intent
+ 
+ Before spawning reviewers, state the intent explicitly. Derive this from:
+@@ -45,7 +47,7 @@ Launch all reviewers in a single message using the Task tool. Use the reviewer t
+ For each reviewer:
+ - `subagent_type`: `generalPurpose`
+ - `model`: the configured `interrogate reviewers` entry, or the table default with no configured line. For an `auto` or `inherit-parent` entry, omit `model` so that reviewer runs on the parent model.
+-- `readonly`: `true`
++- `readonly`: `true`; for a finder or refuser change, `false`, so the reviewer can run probes, with the instruction to write only inside a scratch directory outside the checkout and to leave the checkout untouched
+ 
+ If the Task tool rejects a configured entry, omit `model` for that reviewer and say so. Do not block the review on a slug issue. Never treat an alias entry as a rejected slug.
+ 
+@@ -107,5 +109,8 @@ Present the verdict in this structure:
+ ### Dismissed
+ [Rejected findings with brief rationale.]
+ 
++### Independent Check
++[Finder or refuser changes only. The independent method, each probe as found or missed, and for each missed form whether it exists in the real code today. Without this section the change was not reviewed.]
++
+ ### Agreement Map
+ [Where did models agree, where did they diverge, and what does the pattern of agreement/disagreement tell us?]
+diff --git a/plugins/superstacks/skills/interrogate/references/lead-judgment.md b/plugins/superstacks/skills/interrogate/references/lead-judgment.md
+index 5ce5260..a077d4f 100644
+--- a/plugins/superstacks/skills/interrogate/references/lead-judgment.md
++++ b/plugins/superstacks/skills/interrogate/references/lead-judgment.md
+@@ -51,6 +51,10 @@ Don't dismiss findings just because they're uncomfortable. The whole point of ad
+ 
+ Be especially careful about dismissing security findings and correctness bugs. These deserve more scrutiny even when they come from a single model.
+ 
++## Finders and Refusers
++
++When the change adds or alters a finder or refuser, require the reviewers' Independent Check sections. If a reviewer only read the code, discard its pass: the change is not reviewed for that class until someone runs an independent count and probes. A missed form that exists in the real code today goes in Act On. A missed form that does not exist today goes in Noted, as a stated limit the code should document. Put the surviving method and the probe results in the verdict's Independent Check section.
++
+ ## Verdict Calibration
+ 
+ A good verdict is useful, not comprehensive. The user should be able to read the "Act On" section, fix those issues, and ship with confidence. If your "Act On" list has more than 5 items, you're probably not filtering hard enough.
+diff --git a/plugins/superstacks/skills/interrogate/references/reviewer-prompt.md b/plugins/superstacks/skills/interrogate/references/reviewer-prompt.md
+index 13a252b..664996c 100644
+--- a/plugins/superstacks/skills/interrogate/references/reviewer-prompt.md
++++ b/plugins/superstacks/skills/interrogate/references/reviewer-prompt.md
+@@ -52,6 +52,18 @@ For each finding, provide:
+ - Restating what the code does without identifying a problem
+ - Praising the code. You're an adversary, not a cheerleader. If you find nothing wrong, say "no findings" and stop.
+ 
++## Finder or Refuser Section
++
++If the rubric's "Finders and Refusers" section applies, you must run both checks and end your findings with this section. A review without it is not a pass, however clean the code reads. "I read it and it looks right" is not a result.
++
++```
++## Independent Check
++**Method**: how you counted or traced without the code under review, and the per-file comparison
++**Probes**: each throwaway input and mutant, marked found or missed
++**Missed forms in real code today**: for each missed probe, yes or no, with the search that says so
++**Stated limits**: missed forms that do not exist today
++```
++
+ ## Output
+ 
+ Return your findings as a structured list. If you have zero findings, say so. An empty review is a valid outcome.
+diff --git a/plugins/superstacks/skills/interrogate/references/rubric.md b/plugins/superstacks/skills/interrogate/references/rubric.md
+index 2d92f1b..0442fcc 100644
+--- a/plugins/superstacks/skills/interrogate/references/rubric.md
++++ b/plugins/superstacks/skills/interrogate/references/rubric.md
+@@ -75,3 +75,12 @@ For each security finding, trace the input path through the code and show it.
+ - Authentication/authorization gaps in new endpoints
+ - Secrets in code, logs, or error messages
+ - TOCTOU (time-of-check-time-of-use) in security-critical paths
++
++## Finders and Refusers
++
++Applies when the change adds or alters code whose job is to find things or refuse things: a scanner, inventory, guard, lint rule, drift test, validator. Reading that code and its tests is not a review of it. It agrees with itself, and its blind spots are invisible from inside. Both checks below are mandatory, and you write them yourself:
++
++1. **Independent count or trace.** Count or trace the same thing a different way, without calling or copying the code under review (a plain text search, a different parser, a hand trace of real inputs). Compare per file or per item, not only in total. Every difference is a finding until explained.
++2. **Mutants and fixture probes.** Write throwaway inputs in the forms the code might miss: an alias, an indirection, a callback, a different spelling, a multi-line form. Run the code on them and record each as found or missed. Then break the guarded thing on purpose and confirm the guard fails.
++
++For each missed form, search the real code for it. A missed form that exists in the real code today is a defect of at least high severity (report it as `critical`). A missed form that does not exist today is not a defect: record it as a stated limit of the code, in its own docs or comments.
