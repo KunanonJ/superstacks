@@ -20,7 +20,7 @@ The human who asked for the work (or the user on the ticket) is the merge owner 
 
 ## Trust level
 
-Set `trust_level` here or in repo docs. Default: `1`.
+Set `trust_level` here or in repo docs. Default: `1`. Merge and ready-for-review authority are read from the owner's decision record through `owner-decisions`. Only a recorded standing rule may raise the level, for the scope it states; nothing else raises it.
 
 ```text
 trust_level: 1
