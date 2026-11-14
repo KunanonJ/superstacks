@@ -27,6 +27,12 @@ and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 - `safety-overrides`, `workflow-profile`, `ticket-pipeline`: merge and ready-for-review authority are read from the owner's decision record. `trust_level` stays 1 by default; only a recorded standing rule may raise it, for the scope it states.
 
+### Repository
+
+- Repository automation: `automerge.yml` (auto-merge for the owner's and Dependabot's pull requests once the required check passes), `release.yml` (tag and release a new plugin version from `main` after the checks pass), and `scripts/release_plan.py`.
+- `DECISIONS.md` with the owner's standing rules and decision log.
+- Contributor rules for pull requests from other people in `CONTRIBUTING.md` and `AGENTS.md`.
+
 ## [6.1.1] - 2026-10-06
 
 ### Changed
