@@ -196,3 +196,12 @@ def test_check_pr_body_finder_class_needs_independent_check() -> None:
     # The Class line is matched case-insensitively and only as its own line.
     assert any("## Review" in e for e in mod.check(_GOOD_BODY.replace("Refs #12", "Refs #12\nclass: Finder")))
     assert mod.check(_GOOD_BODY.replace("Ship the scanner.", "Not Class: finder here.")) == []
+
+
+def test_check_pr_body_class_line_spellings() -> None:
+    mod = _load(SKILLS / "pr" / "scripts" / "check_pr_body.py")
+    for spelling in ("**Class:** finder", "Class:   finder", "  Class: Finder"):
+        body = _GOOD_BODY.replace("Refs #12", f"Refs #12\n{spelling}")
+        assert any("## Review" in e for e in mod.check(body)), spelling
+    # Stated limit: the Class line inside a fenced example still counts, and a
+    # Review section that uses only other word forms ("independently") fails.
