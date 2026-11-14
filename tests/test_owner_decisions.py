@@ -15,7 +15,7 @@ GOOD = """# Decisions
 
 | Rule | Scope | Exceptions | Date | Source |
 | --- | --- | --- | --- | --- |
-| merge: the agent may merge its own PR after a passing review | docs and tests | locked paths | 2026-02-01 | 2026-02-01 merge policy |
+| merge: the agent may merge its own PR after review | docs | locked paths | 2026-02-01 | 2026-02-01 merge policy |
 
 ## Decision log
 
