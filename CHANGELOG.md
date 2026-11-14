@@ -5,15 +5,22 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [6.2.0] - 2026-11-14
 
 ### Added
+
+- Model-invoked `owner-decisions`: finds the owner's decision record (a project decision skill, a `DECISIONS.md` ledger, or tracker decisions), reads it before asking, records a decision before acting, and reads authority from it.
+- `owner-decisions/templates/DECISIONS.md`, `scripts/check_decisions.py` (ledger validator), and `scripts/authority.py` (prints the standing rule that grants an authority, or `DEFAULT: human`).
+
+### Changed
+
+- `safety-overrides`, `workflow-profile`, `ticket-pipeline`: merge and ready-for-review authority are read from the owner's decision record. `trust_level` stays 1 by default; only a recorded standing rule may raise it, for the scope it states.
+
+### Repository
 
 - Repository automation: `automerge.yml` (auto-merge for the owner's and Dependabot's pull requests once the required check passes), `release.yml` (tag and release a new plugin version from `main` after the checks pass), and `scripts/release_plan.py`.
 - `DECISIONS.md` with the owner's standing rules and decision log.
 - Contributor rules for pull requests from other people in `CONTRIBUTING.md` and `AGENTS.md`.
-
-No plugin content changed, so the plugin version stays 6.1.1.
 
 ## [6.1.1] - 2026-10-06
 
@@ -56,6 +63,7 @@ No plugin content changed, so the plugin version stays 6.1.1.
 
 - The v5 aggregated skill catalog (archived as git tag `archive/v5-catalog`).
 
+[6.2.0]: https://github.com/KunanonJ/superstacks/compare/v6.1.1...v6.2.0
 [6.1.1]: https://github.com/KunanonJ/superstacks/compare/v6.1.0...v6.1.1
 [6.1.0]: https://github.com/KunanonJ/superstacks/compare/v6.0.0...v6.1.0
 [6.0.0]: https://github.com/KunanonJ/superstacks/compare/archive/v5-catalog...v6.0.0

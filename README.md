@@ -6,7 +6,7 @@ Lean MIT skill stack for coding agents: discovery, plans, TDD, verification loop
 
 [![CI](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml/badge.svg)](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0B1F33.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-6.1.1-2EC4B6.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-6.2.0-2EC4B6.svg)](CHANGELOG.md)
 
 Superstacks is a small plugin, not a giant catalog. It vendors a handful of upstream skills at pinned git SHAs, applies documented patches, and adds a generic ticket pipeline plus hard safety overrides. The GitHub repository name is `KunanonJ/superstacks`.
 
@@ -25,7 +25,7 @@ Themes drawn from the public Matt Pocock × Poteto conversation: [YouTube](https
 
 - One folder you can list in Claude, Cursor, and Codex marketplaces.
 - Descriptions stay short, trigger-first, and product-neutral in skill bodies.
-- Safety overrides beat skill text: draft PRs, `Refs #N`, evidence before "done", and a `trust_level` ladder (default 1: humans merge everything).
+- Safety overrides beat skill text: draft PRs, `Refs #N`, evidence before "done", and a `trust_level` ladder (default 1: humans merge everything; a recorded owner decision may raise it, see `owner-decisions`).
 - Vendored copies are hashed in `sources.lock.json`. Patches live in `patches/`.
 
 ## Quick start
@@ -70,6 +70,7 @@ Off-pipeline (user-invoked): `mistake-to-constraint`, `steer-miner`, `intake-tri
 | Skill | Invocation | Source |
 | --- | --- | --- |
 | verify-loop | model | this repo |
+| owner-decisions | model | this repo |
 | writing-plans | model | obra/superpowers |
 | test-driven-development | model | obra/superpowers |
 | verification-before-completion | model | obra/superpowers |
@@ -94,7 +95,7 @@ Always-on rule: `plugins/superstacks/rules/safety-overrides.mdc`.
 
 ## Safety
 
-- Draft pull requests. Never mark ready. Merge only as `trust_level` allows (default 1: humans merge everything).
+- Draft pull requests. Never mark ready. Merge only as `trust_level` allows (default 1: humans merge everything). Authority to merge or mark ready comes from the owner's decision record (`owner-decisions`); with none, a human merges.
 - `Refs #N` never `Closes` / `Fixes` / `Resolves`.
 - Push the working branch only. `--force-with-lease` only.
 - No production credentials, live infrastructure, runtime installs, or secret CI jobs.

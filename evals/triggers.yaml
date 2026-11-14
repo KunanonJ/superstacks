@@ -32,6 +32,11 @@ skills:
   sample-review:
     - sample five merged PRs from today
     - propose environment tightenings not per-PR comments
+  owner-decisions:
+    - can the agent merge this PR
+    - before asking the owner a question check what they already decided
+    - record the owner's decision before acting on it
+    - propose a standing rule from repeated decisions
   workflow-profile:
     - what is trust_level
     - who merges two-way door PRs

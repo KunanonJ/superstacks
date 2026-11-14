@@ -1,44 +1,49 @@
 # Decisions
 
-How this repository is maintained, as decided by the owner. These rules govern this repository's own pull requests and releases. They do not change `plugins/superstacks/rules/safety-overrides.mdc` or any skill, which are the rules the plugin gives to other projects.
+Ledger of the owner's decisions about how this repository is maintained. Newest first.
+Validate with `python plugins/superstacks/skills/owner-decisions/scripts/check_decisions.py DECISIONS.md`.
+
+These rules are about this repository only. The rules the plugin gives to other projects are in
+`plugins/superstacks/rules/safety-overrides.mdc` and are not changed by anything here.
 
 ## Standing rules
 
-| Rule | What it means | Where it is enforced |
-| --- | --- | --- |
-| Owner pull requests merge by themselves | A non-draft pull request from the owner's account, from a branch in this repository, gets auto-merge (squash) and merges when the required check passes. No exceptions for safety rules or CI files. | `.github/workflows/automerge.yml` |
-| Dependabot pull requests merge by themselves | Same mechanism, same required check. | `.github/workflows/automerge.yml` |
-| A new version is tagged and released automatically | A plugin version on `main` with no `v<version>` tag is checked, built, tagged and released with its ZIPs. | `.github/workflows/release.yml`, `scripts/release_plan.py` |
-| Other people's pull requests wait for the owner | An agent reviews the pull request for safety and posts a verdict, then the owner reviews and merges it himself. Never automatic. | `CONTRIBUTING.md`, `AGENTS.md` |
+| Rule | Scope | Exceptions | Date | Source |
+| --- | --- | --- | --- | --- |
+| merge: a pull request from the owner's account merges by itself when the required check passes | This repository, any path | Other accounts, forks, a red or pending check | 2026-11-15 | 2026-11-15 automatic merging |
+| ready: a pull request from the owner's account is opened ready for review, not as a draft | This repository | Other accounts | 2026-11-15 | 2026-11-15 automatic merging |
+| deploy: a version bump on main is tagged and released automatically | This repository | A version whose checks fail is not released | 2026-11-15 | 2026-11-15 how a new version reaches projects |
 
 ## Decision log
 
-Newest first. All decisions are dated 2026-11-15.
+### 2026-11-15 other people's pull requests
 
-### 2026-11-15: other people's pull requests
+- Question and options: none put; the owner added this after choosing automatic merging
+- Owner's words: "but incase if other people want to contribute would need me to review and merge it by myself which you shoul review it first make sure it safe"
+- Selects: a pull request from any other account is never merged automatically; an agent reviews it for safety first and posts its findings, then the owner reviews and merges it
+- Does not cover: who may be given write access, and what counts as a trusted contributor later
+- Where recorded: the pull request that added the repository automation
 
-> "but incase if other people want to contribute would need me to review and merge it by myself which you shoul review it first make sure it safe"
+### 2026-11-15 how a new version reaches projects
 
-Selects: a pull request from anyone else is reviewed by an agent for safety first, then reviewed and merged by the owner himself.
-Does not cover: any automatic merge, label or comment on such a pull request. It does not let the agent merge it, whatever the verdict.
+- Question and options: after a change merges, how should a new version reach the projects that use the plugin? A) tag and release automatically (recommended) B) the owner cuts releases himself
+- Owner's words: "Tag and release automatically (Recommended)"
+- Selects: A
+- Does not cover: when a project picks the release up; each project updates the plugin itself
+- Where recorded: the pull request that added the repository automation
 
-### 2026-11-15: how a new version reaches projects
+### 2026-11-15 automatic merging
 
-Asked how a new version reaches projects, the owner chose: "Tag and release automatically (Recommended)".
+- Question and options: how far should automatic merging go? A) automatic with a locked core that still needs the owner (recommended) B) fully automatic, no exceptions C) automatic for text only
+- Owner's words: "Fully automatic, no exceptions"
+- Selects: B. Everything from the owner's account merges when the required check passes, the safety rules and the workflow files included
+- Does not cover: pull requests from other accounts or from forks; removing the required check; a release of a version whose checks fail
+- Where recorded: the pull request that added the repository automation
 
-Selects: a version bump that reaches `main` is tagged and published as a GitHub release with the built ZIPs, without a manual step.
-Does not cover: publishing a version that failed the checks (the release job runs the linter, tests, size check and build first), re-releasing a version that is already tagged, or a release from any branch other than `main`.
+### 2026-11-15 set up the automation
 
-### 2026-11-15: how far automatic merging goes
-
-Asked how far automatic merging should go, with a recommended option that kept a locked core, the owner chose: "Fully automatic, no exceptions".
-
-Selects: everything from the owner's own account merges when checks pass, including safety rules and CI files.
-Does not cover: pull requests from other accounts or from forks; it does not remove the required check (auto-merge waits for it); it does not apply to drafts.
-
-### 2026-11-15: automatic merging and updates
-
-> "ok for superstack skills please setup cicd to let it do automerge with humanless and continue update seamlessly everytime"
-
-Selects: CI/CD that merges without a human and keeps updates flowing on every change.
-Does not cover: weakening the required check, or merging pull requests from other people.
+- Question and options: none put; the owner asked for it
+- Owner's words: "ok for superstack skills please setup cicd to let it do automerge with humanless and continue update seamlessly everytime"
+- Selects: build automatic merging and automatic releases for this repository
+- Does not cover: how far automatic merging goes, which the entry above settles
+- Where recorded: the pull request that added the repository automation

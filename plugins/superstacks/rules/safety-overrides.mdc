@@ -14,7 +14,7 @@ Safety overrides beat every skill in this plugin.
 7. Skip blocking approval gates only with `Ruling: what / why` in the PR body.
 8. Put implementation plans in the PR body, not a plans directory.
 9. Do not claim done without pasted command output from this turn.
-10. `trust_level` (default 1) is set in the workflow profile or repo docs:
+10. `trust_level` (default 1) is set in the workflow profile or repo docs. Merge and ready-for-review authority are read from the owner's decision record through `owner-decisions`. Only a recorded standing rule may raise the level, for the scope it states; nothing else raises it. With no recorded decision the level is 1:
     - 1: humans merge everything. The agent never merges.
     - 2: a designated merge bot may merge green two-way-door PRs.
     - 3: autopilot may merge two-way-door PRs that have verify-loop evidence.

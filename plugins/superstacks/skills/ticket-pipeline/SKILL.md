@@ -30,7 +30,7 @@ Re-run until the script prints `missing: 0`.
 
 ## Hard rules (also in safety-overrides)
 
-- Draft PRs. Never mark ready. Merge only as `trust_level` in safety-overrides allows.
+- Draft PRs. Never mark ready. Merge only as `trust_level` in safety-overrides allows. Read the owner's recorded decisions through `owner-decisions` first; with none, a human merges.
 - Push only this branch. Rewrite with `--force-with-lease` only.
 - No production credentials, live infrastructure, runtime package installs, or secret-using CI jobs.
 - No tracker or chat writes from a ticket.
