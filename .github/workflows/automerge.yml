@@ -1,0 +1,49 @@
+name: automerge
+
+# Turns on auto-merge for pull requests this repository trusts. Auto-merge itself
+# waits for the required checks, so nothing merges while a check is red or pending.
+# Pull requests from any other account or from a fork are never touched here.
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronize]
+
+jobs:
+  owner:
+    name: automerge owner pull request
+    runs-on: ubuntu-latest
+    # Author is the repository owner (not merely someone who pushed to the branch).
+    # Head branch lives in this repository: a fork never qualifies.
+    # Drafts are skipped until they are marked ready for review.
+    if: >-
+      github.event.pull_request.user.login == github.repository_owner
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && github.event.pull_request.draft == false
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge (squash)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR_URL"
+
+  dependabot:
+    name: automerge dependabot pull request
+    runs-on: ubuntu-latest
+    # The actor is Dependabot, so a human push to the branch stops this job.
+    # Same fork and draft guards as above.
+    if: >-
+      github.actor == 'dependabot[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && github.event.pull_request.draft == false
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge (squash)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR_URL"
