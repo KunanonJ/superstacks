@@ -13,8 +13,11 @@ skills:
     - tell the owner this PR is reviewed and green
     - say that none of the calls run inside a transaction
     - my change passes its folder tests, what else runs before I push
+    - which test suites does neither the pipeline nor the pre-push hook run
+    - these two open PRs share no file, can I call them independent
   writing-plans:
     - the plan has a step that deletes a record in another system
+    - every open PR conflicts on the generated inventory file
   ticket-pipeline:
     - run this ticket from discovery to a draft PR
     - which pipeline steps have evidence
@@ -61,6 +64,7 @@ skills:
     - the lint rule passed review, try to break it
     - my reading of the library says it is safe but a test fails
     - the retry closed the work as nothing to do after a timeout
+    - I flipped the flag by hand and no test failed
   how:
     - explain how this subsystem works before we change it
   test-driven-development:
@@ -70,3 +74,4 @@ skills:
     - two requests insert the first row at the same time
     - the test prints the count but asserts nothing
     - the call timed out after the other system applied the change
+    - the statement time limit leaked to the next caller on the pooled connection

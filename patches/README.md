@@ -19,4 +19,6 @@ say ready" step (`verification-before-completion`), and the `## Review` section 
 
 `*-v6.6.patch` files document dest-only edits stacked on the v6.5 dest copies: the "a call that changes another system" section (`writing-plans`), the lost-answer reviewer bullets (`interrogate` rubric) and the lost-answer test shape (`test-driven-development`). Each is a plain `git diff` of the skill folder from the 6.5.0 tree.
 
+`*-v6.7.patch` files document dest-only edits stacked on the v6.6 dest copies: the "suites nobody runs for you" and "no shared file is not independence" sections (`verification-before-completion`), the one-transaction setting case (`test-driven-development`), the hand-made break bullet (`interrogate` rubric) and the generated-lists section (`writing-plans`). Each is a plain `git diff` of the skill folder from the 6.6.1 tree.
+
 Pins and sha256 hashes live in `/sources.lock.json`.

@@ -1,0 +1,24 @@
+diff --git a/plugins/superstacks/skills/test-driven-development/SKILL.md b/plugins/superstacks/skills/test-driven-development/SKILL.md
+index fbacbe389..2fbd78e95 100644
+--- a/plugins/superstacks/skills/test-driven-development/SKILL.md
++++ b/plugins/superstacks/skills/test-driven-development/SKILL.md
+@@ -222,7 +222,7 @@ When writing or changing any test, read [writing-good-tests.md](writing-good-tes
+ 
+ ## Tests That Cannot See the Defect
+ 
+-A test can pass for a reason that has nothing to do with the behavior it names. Four cases come up again and again.
++A test can pass for a reason that has nothing to do with the behavior it names. Five cases come up again and again.
+ 
+ ### Verify a stored value through a second path
+ 
+@@ -244,6 +244,10 @@ To test it, hold every transaction open after its read until all of them have ar
+ 
+ For a call that changes another system, make the fake accept the request, apply the change, and then fail the call with a timeout. Run the retry. Assert that the work is still open and waiting for proof, not closed as "nothing to do". A mock that fails without applying the change cannot see this defect, and neither can a mock that always answers.
+ 
++### A setting meant to last for one transaction
++
++When code sets a session setting for the length of one transaction (a statement time limit, a schema search path, a role, a lock time limit), nothing fails if the setting is made for the whole session instead: the next caller on that pooled connection inherits it, far from the code that set it. Test it on a pool of exactly one connection: read the setting and the connection's identity before the call and after it, and expect both equal. The identity check stops a silent reconnect from passing the test. Then flip the scope by hand once and watch the test fail.
++
+ ## Common Rationalizations
+ 
+ | Excuse | Reality |

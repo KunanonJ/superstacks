@@ -1,0 +1,22 @@
+diff --git a/plugins/superstacks/skills/writing-plans/SKILL.md b/plugins/superstacks/skills/writing-plans/SKILL.md
+index 08621484c..63537862a 100644
+--- a/plugins/superstacks/skills/writing-plans/SKILL.md
++++ b/plugins/superstacks/skills/writing-plans/SKILL.md
+@@ -172,6 +172,17 @@ Three rules keep the record honest.
+ 
+ Plan the test with the design: a fake of the other system that applies the change and then fails the call.
+ 
++## Generated Lists That Every Open Change Rewrites
++
++A generated file that every change rewrites and that holds whole-tree numbers makes each merge a conflict for every other open change, and each conflict costs a merge of the main branch and a full pipeline run. Split it in two.
++
++- **Rows.** One row for the smallest unit a change touches (a module, a source file), one row per line, sorted by key, with an empty line between rows. Each row holds only facts of its own key. Every change regenerates the rows, and a test compares them with a fresh scan.
++- **Totals.** Anything computed across rows. They are regenerated on request, by whoever ends a batch of merges, and no test compares them.
++
++Prove the split with real merges in a temporary repository: two changes far apart, two neighbouring rows, a row added between two changed rows, and two changes to one row. The last case is the one to write a rule for: it can merge without a conflict into a row that is wrong, so regenerate the rows after every merge of the main branch, not only when a conflict is reported.
++
++Compare a generated list only on what its source alone decides: no dates, no machine paths, no counts that another change can move. Run its guard from every path that can change the source.
++
+ ## Self-Review
+ 
+ After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
