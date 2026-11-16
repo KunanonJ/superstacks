@@ -1,6 +1,6 @@
 {
   "plugin": "superstacks",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "repository": "https://github.com/KunanonJ/superstacks",
   "sources": [
     {
@@ -197,9 +197,9 @@
     }
   },
   "dest_sha256": {
-    ".claude-plugin/plugin.json": "f74013307f20796b2c97e09200bcec320b04d41476d94f9ac6593282968753a0",
-    ".codex-plugin/plugin.json": "1f98e3cd7d41b39d4a1de10ff5b5c659b0d7b5304aebd43c7d942a5f10a02f71",
-    ".cursor-plugin/plugin.json": "b21b1836fbfce28dcffee8bff3c050977f43abb3c8c3fff3e1f2002cabba02ad",
+    ".claude-plugin/plugin.json": "23618621cd7d8f717b55b7a94ba3250d1c2389c73e1711ca73469c66b1e4e847",
+    ".codex-plugin/plugin.json": "4c63ed5e2e9ed46b4292f4281e6a52d3257eb08243613f55692c1b914c78e85b",
+    ".cursor-plugin/plugin.json": "bcdbb0479f681465d78aa06913200f053669983e6efa7c058ad7b03e2c54e351",
     "LICENSE": "7fce1ee5b8a12918fdc25342b1e8e348c1f7cf588cf6d9224767dd54468cfb3c",
     "README.md": "ab7388aab0b1caee9bec7f93c261d8fa206f28eda56ff0002ea3a7f5020eb340",
     "SECURITY.md": "dcd7e34aa0149adc62cfdcf790c84e4826bb40f7367592d72be30e4d61d0e772",
@@ -223,15 +223,15 @@
     "skills/how/references/explorer-prompt.md": "a3b44a6e5bb16a6d4d1cac19db8ed5322ffd5f5f5d45baca4e73990ca096f8be",
     "skills/interrogate/SKILL.md": "406376646d1f35c56b9aa10139ae5663bddc01affd627635b5825ebcddce7a2b",
     "skills/interrogate/references/code-quality-review.md": "79162fda183eafd40d51661fbb5e151c7ba250f89e506ba17f5bd135dcbd50a8",
-    "skills/interrogate/references/lead-judgment.md": "020499ec85b3ac6312c7e27447c4e9346eb3062cce3db41d5c697f33113a4007",
+    "skills/interrogate/references/lead-judgment.md": "ae3ac4abea4576f200118123e699099994bdd36d3ab391b046100a2a789d8732",
     "skills/interrogate/references/reviewer-prompt.md": "161356992c899a03d34a8e356862717a46a1442e070c62aa77ed842598b6c225",
-    "skills/interrogate/references/rubric.md": "9a7c75bbeaba3bc9d5d76a33e6aa48c0667704222626a379a76e245188eac2d5",
+    "skills/interrogate/references/rubric.md": "5cd31c762bbec8801dfd55a289738ecf83df0f7d8b9f12a1d2756ed70a2724e5",
     "skills/pr/CREDITS.md": "a7a087127665d7298a72280ef6e19c41ad8404523712a788c8dc3ab414bc2497",
     "skills/pr/SKILL.md": "7143c4b2097b7ba12aede755ef77ff3176b83ebcad9ba99843bd28e93e294220",
-    "skills/test-driven-development/SKILL.md": "64eac53fda6bf4af5ef7684159095ffb61d1ca8cbe7faa4c56e709ab7c57b201",
+    "skills/test-driven-development/SKILL.md": "b1dbcaf1c15118f96e3d3d97cded97d3099f0d5d2ccd17e1b87e64d05b15ecf1",
     "skills/test-driven-development/writing-good-tests.md": "94ed93cf5645a3cba0f7063409d97e572141ab6d2f9d68c24d317f1f1e1f260f",
     "skills/ticket-pipeline/SKILL.md": "b3f47277feef5b5892965a7bf3d3f84a35d884a4f4b33f2bcfef43014a05c5f9",
-    "skills/verification-before-completion/SKILL.md": "6e5e59bf0a2e749a3d59a5a1d5f796dc7075b85a65cab1febe684d153763b8ed",
+    "skills/verification-before-completion/SKILL.md": "4e6f5bb1c7b8a10032f1bdb07029b616e2b0f6b7ec9b689526d949a0030e30f7",
     "skills/workflow-profile/SKILL.md": "591dd658272c2ce60cf13c3ac8858b50e9548486069562e8ed21d51fc7b30190",
     "skills/writing-for-agents/SKILL-MECHANICS.md": "c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059",
     "skills/writing-for-agents/SKILL.md": "93720a5d3f01458d5b165a3cf4fd83befc4c8ba5bcfb50552033c4146f392927",

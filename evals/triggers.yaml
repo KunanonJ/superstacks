@@ -12,6 +12,7 @@ skills:
     - ready to open the PR
     - tell the owner this PR is reviewed and green
     - say that none of the calls run inside a transaction
+    - my change passes its folder tests, what else runs before I push
   ticket-pipeline:
     - run this ticket from discovery to a draft PR
     - which pipeline steps have evidence
@@ -56,8 +57,12 @@ skills:
     - schema migration review
     - review the new scanner, does the guard miss any form
     - the lint rule passed review, try to break it
+    - my reading of the library says it is safe but a test fails
   how:
     - explain how this subsystem works before we change it
   test-driven-development:
     - failing test first
     - red green refactor
+    - the test reads the timestamp back through the same code that wrote it
+    - two requests insert the first row at the same time
+    - the test prints the count but asserts nothing

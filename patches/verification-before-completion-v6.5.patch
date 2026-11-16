@@ -1,0 +1,26 @@
+diff --git a/plugins/superstacks/skills/verification-before-completion/SKILL.md b/plugins/superstacks/skills/verification-before-completion/SKILL.md
+index c44d8e87b..eb4008f0c 100644
+--- a/plugins/superstacks/skills/verification-before-completion/SKILL.md
++++ b/plugins/superstacks/skills/verification-before-completion/SKILL.md
+@@ -45,6 +45,11 @@ Skip any step = lying, not verifying
+ 1. Read every comment and review posted on the PR and on its ticket since your own last review. Your review and the check status are only part of the state.
+ 2. A newer failing review, or a finding nobody answered, means not ready. Say which one and who posted it.
+ 3. Name the head you reviewed, and word each claim as what the check can see. "None", "all", "safe" and "always" need the method that established them: write "no outbound call between these two brackets", not "no outbound call runs in a transaction", when the check only read the text between the brackets.
++4. Run the whole-tree guards as well as the tests for the folder you changed. Some tests scan the entire source tree: an inventory that requires a decision for every stored field of a certain kind, a sweep that bans a call or an option anywhere. A change in one folder can fail them, and a test run scoped to the changed folder never loads them. Find them before you push, run them, and name them in any brief you hand to another agent.
++
++## A Reading Is Not Evidence
++
++A reading of the source is a hypothesis; a failing test is evidence. When a reviewer concludes from reading library code that something is safe, and a test shows otherwise, do not side with the reading. Have a second reader trace the value to its last hop (the bytes on the wire or on disk), and write down where the first reading stopped. A frequent cause: the trace stops at a serializer that looks right, one step before a lower layer re-parses and reformats the value.
+ 
+ ## Common Failures
+ 
+@@ -58,6 +63,9 @@ Skip any step = lying, not verifying
+ | Agent completed | VCS diff shows changes | Agent reports "success" |
+ | Requirements met | Line-by-line checklist | Tests passing |
+ | PR is ready | Every comment and review since your last one, read | Your own review passing, checks green |
++| A test result is reported as a finding | An assertion that can fail: an exact value, or a justified bound | A number the test only prints |
++| Code is safe because the source reads that way | A test or a trace to the last hop (bytes on the wire or disk) | A read that stopped at a serializer |
++| Change is ready to push | The whole-tree guard tests, run as well as the folder's own tests | A test run scoped to the changed folder |
+ | "None", "all", "safe", "always" | The method that established it, named beside the claim | A search that covers only part of the code |
+ 
+ ## Red Flags - STOP

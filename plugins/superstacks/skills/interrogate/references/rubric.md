@@ -13,6 +13,7 @@ Does the code actually do what the intent says it should?
 - Does the happy path work? Does the sad path work?
 - Idempotency: what happens if this operation runs twice, or if a previous run crashed halfway? If the answer is "it depends on what state was left behind," there's a missing reconciliation step.
 - Concurrency: if multiple actors can touch the same mutable state (files, branches, shared data), is access serialized structurally (locks, sequential phases, exclusive ownership), or by conventions that won't hold?
+- Write skew: under snapshot isolation, two transactions that read the same state and insert different keys do not conflict. A fence on "update the latest row" does nothing when there is no row yet. Ask whether the first-of-a-kind case has a row that both writers always change, and whether a test holds every transaction open after its read until all have arrived.
 
 When you find a potential bug, trace the execution path. Don't just flag "this could be nil". Show the call chain that makes it nil.
 
@@ -50,6 +51,8 @@ Can you tell that this code works from reading it?
 - Are there assertions/invariants that would catch regressions?
 - If this is a bug fix: is there a test for the bug?
 - If this touches an integration boundary: is the full path tested?
+- Search test code for results that are logged and not asserted, and for comments that claim more than the code records. A finding backed only by a printed number is not backed.
+- For anything persisted (timestamps, money amounts, identifiers): does a test read the stored value back through an independent client or a raw query, at least once under a non-UTC session or a non-default locale? A write and read through the same code cannot see an error that is undone on the way out.
 - Check the real thing, not a proxy. If the code checks liveness via file mtime or cached state instead of reading the actual value, that's a verification gap.
 - For delegated or async work: does the code verify actual output artifacts, or does it trust self-reports and summaries?
 

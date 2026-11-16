@@ -1,0 +1,40 @@
+diff --git a/plugins/superstacks/skills/test-driven-development/SKILL.md b/plugins/superstacks/skills/test-driven-development/SKILL.md
+index 681a28835..a4821211b 100644
+--- a/plugins/superstacks/skills/test-driven-development/SKILL.md
++++ b/plugins/superstacks/skills/test-driven-development/SKILL.md
+@@ -220,6 +220,26 @@ When writing or changing any test, read [writing-good-tests.md](writing-good-tes
+ - Keep test-only code in test utilities, out of production classes
+ - Understand a dependency's side effects before mocking it
+ 
++## Tests That Cannot See the Defect
++
++A test can pass for a reason that has nothing to do with the behavior it names. Three cases come up again and again.
++
++### Verify a stored value through a second path
++
++A test that writes through the code under test and reads back through the same code cannot see an error that is applied on the way in and undone on the way out: a time-zone shift, an encoding, a unit or scale conversion. For anything persisted that matters (timestamps, money amounts, identifiers), read the stored value back through an independent client or a raw query and compare it with the value you gave.
++
++Run that check at least once under a non-default environment, because defaults hide the whole class: a database session whose time zone is not UTC, a non-default locale or collation. Test environments and CI usually run in UTC, where such an error is invisible.
++
++### Printed is not asserted
++
++A number that a test prints proves nothing to the next run and nothing to a reader of a green result. Every finding reported from a test needs an assertion that can fail: an exact value where the result is deterministic, a justified bound where it is not. A probe that exists to measure may print its count, but it must still assert the property it claims, for example "some requests were refused, each with this error class". Make sure a comment never claims more than the code records.
++
++### Two writers conflict only on something both write
++
++Under snapshot isolation, two transactions that read the same state and then insert different keys do not conflict (write skew). A fence built on "update the latest row" does nothing for the first operation, when there is no row yet. The first-of-a-kind case needs its own fence: a row both writers always change (an update that changes nothing writes nothing and cannot conflict).
++
++To test it, hold every transaction open after its read until all of them have arrived, then let them write. A plain burst of parallel calls rarely overlaps enough to show the defect. Give every such gate a way to open, and a time limit that fails the test with the real error when one participant fails before arriving; otherwise a setup failure looks like a hang.
++
+ ## Common Rationalizations
+ 
+ | Excuse | Reality |
+@@ -303,6 +323,8 @@ Before marking work complete:
+ - [ ] Output pristine (no errors, warnings)
+ - [ ] Tests use real code (mocks only if unavoidable)
+ - [ ] Edge cases and errors covered
++- [ ] Persisted values that matter read back through a second path, once under a non-default environment
++- [ ] Every number a test reports is backed by an assertion that can fail
+ 
+ Can't check all boxes? You skipped TDD. Start over.
+ 
