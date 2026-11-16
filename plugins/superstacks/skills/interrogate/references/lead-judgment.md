@@ -51,6 +51,10 @@ Don't dismiss findings just because they're uncomfortable. The whole point of ad
 
 Be especially careful about dismissing security findings and correctness bugs. These deserve more scrutiny even when they come from a single model.
 
+### A Reading Against a Failing Test
+
+When a reviewer concludes from reading code that something is safe and a failing test shows otherwise, the failing test wins. Do not dismiss the failure because the reading looked careful. Ask a second reader to trace the value to its last hop (the bytes on the wire or on disk), and record where the first reading stopped. It usually stopped at a serializer that looked right, one step before a lower layer re-parsed and reformatted the value.
+
 ## Finders and Refusers
 
 When the change adds or alters a finder or refuser, require the reviewers' Independent Check sections. If a reviewer only read the code, discard its pass: the change is not reviewed for that class until someone runs an independent count and probes. A missed form that exists in the real code today goes in Act On. A missed form that does not exist today goes in Noted, as a stated limit the code should document. Put the surviving method and the probe results in the verdict's Independent Check section.

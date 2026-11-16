@@ -6,7 +6,7 @@ Lean MIT skill stack for coding agents: discovery, plans, TDD, verification loop
 
 [![CI](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml/badge.svg)](https://github.com/KunanonJ/superstacks/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0B1F33.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-6.3.0-2EC4B6.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-6.5.0-2EC4B6.svg)](CHANGELOG.md)
 
 Superstacks is a small plugin, not a giant catalog. It vendors a handful of upstream skills at pinned git SHAs, applies documented patches, and adds a generic ticket pipeline plus hard safety overrides. The GitHub repository name is `KunanonJ/superstacks`.
 

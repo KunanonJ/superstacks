@@ -15,4 +15,6 @@ say ready" step (`verification-before-completion`), and the `## Review` section 
 `Class: finder` check (`pr`). Each is a plain `git diff` of the skill folder from the
 6.3.0 tree. The plugin tree is still the source of truth.
 
+`*-v6.5.patch` files document dest-only edits stacked on the v6.4 dest copies: the "tests that cannot see the defect" section (`test-driven-development`), the whole-tree guard step and the "a reading is not evidence" section (`verification-before-completion`), and the review rubric and lead-judgment lines (`interrogate`). Each is a plain `git diff` of the skill folder from the 6.4.0 tree.
+
 Pins and sha256 hashes live in `/sources.lock.json`.

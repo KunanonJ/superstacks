@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.5.0] - 2026-11-16
+
+### Changed
+
+- `test-driven-development`: a new section, "Tests That Cannot See the Defect". Verify a stored value through a second path (an independent client or a raw query), at least once under a non-default environment such as a non-UTC database session. Printed is not asserted: every reported finding needs an assertion that can fail. Two writers conflict only on something both write: the first-of-a-kind case needs its own fence, and its test holds every transaction open after its read until all have arrived, with a way to open the gate and a time limit that fails with the real error. Two lines are added to the verification checklist.
+- `verification-before-completion`: the "before you say ready" step now includes running the whole-tree guard tests as well as the changed folder's tests. A new section states that a reading of the source is a hypothesis and a failing test is evidence; trace the value to its last hop and record where the first reading stopped.
+- `interrogate` (rubric, lead judgment): reviewers search test code for results that are logged and not asserted, check persisted values through a second path, and ask about write skew; the lead does not side with a reading over a failing test.
+- `patches/*-v6.5.patch` document the edits to the vendored files; `sources.lock.json` dest hashes updated for the edited files.
+
 ## [6.4.0] - 2026-11-14
 
 ### Changed
