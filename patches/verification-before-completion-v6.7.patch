@@ -1,0 +1,21 @@
+diff --git a/plugins/superstacks/skills/verification-before-completion/SKILL.md b/plugins/superstacks/skills/verification-before-completion/SKILL.md
+index eb4008f0c..961170fa0 100644
+--- a/plugins/superstacks/skills/verification-before-completion/SKILL.md
++++ b/plugins/superstacks/skills/verification-before-completion/SKILL.md
+@@ -51,6 +51,16 @@ Skip any step = lying, not verifying
+ 
+ A reading of the source is a hypothesis; a failing test is evidence. When a reviewer concludes from reading library code that something is safe, and a test shows otherwise, do not side with the reading. Have a second reader trace the value to its last hop (the bytes on the wire or on disk), and write down where the first reading stopped. A frequent cause: the trace stops at a serializer that looks right, one step before a lower layer re-parses and reformats the value.
+ 
++## Suites Nobody Runs For You
++
++Find out which test suites neither the pipeline nor the pre-push hook runs: suites that need a real database or another service, suites that compare against recorded output, and suites behind an environment flag. They fail silently on the main branch until someone runs them by hand.
++
++Before you say ready, list those suites for every folder your change touches and run them. Name them in any brief you hand to another agent. A change that only reworded one line of a report can break a recorded suite in a folder you never opened.
++
++## No Shared File Is Not Independence
++
++Before you call two open changes independent, list every exported function, type or file format whose signature or meaning each one changes, and search the other branch for each name. Two changes with no file in common still break each other when one changes a helper the other calls: each passes alone and the main branch fails after the second merge. Report the result of the search, not the list of files.
++
+ ## Common Failures
+ 
+ | Claim | Requires | Not Sufficient |
