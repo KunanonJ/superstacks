@@ -222,7 +222,7 @@ When writing or changing any test, read [writing-good-tests.md](writing-good-tes
 
 ## Tests That Cannot See the Defect
 
-A test can pass for a reason that has nothing to do with the behavior it names. Three cases come up again and again.
+A test can pass for a reason that has nothing to do with the behavior it names. Four cases come up again and again.
 
 ### Verify a stored value through a second path
 
@@ -239,6 +239,10 @@ A number that a test prints proves nothing to the next run and nothing to a read
 Under snapshot isolation, two transactions that read the same state and then insert different keys do not conflict (write skew). A fence built on "update the latest row" does nothing for the first operation, when there is no row yet. The first-of-a-kind case needs its own fence: a row both writers always change (an update that changes nothing writes nothing and cannot conflict).
 
 To test it, hold every transaction open after its read until all of them have arrived, then let them write. A plain burst of parallel calls rarely overlaps enough to show the defect. Give every such gate a way to open, and a time limit that fails the test with the real error when one participant fails before arriving; otherwise a setup failure looks like a hang.
+
+### The lost answer
+
+For a call that changes another system, make the fake accept the request, apply the change, and then fail the call with a timeout. Run the retry. Assert that the work is still open and waiting for proof, not closed as "nothing to do". A mock that fails without applying the change cannot see this defect, and neither can a mock that always answers.
 
 ## Common Rationalizations
 

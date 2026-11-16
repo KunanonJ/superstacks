@@ -160,6 +160,18 @@ decide nothing ("TBD", "handle edge cases", "add appropriate validation",
 "write tests for the above", a type or function no task defines) are the
 opposite failure, and the self-review catches both.
 
+## A call that changes another system
+
+When a step calls another system and the call changes something there (it deletes, charges, sends or books), plan for the case where the change happened and you never read the answer: the request timed out, the reply could not be parsed, the process died, or the claim on the row was lost before the result was stored.
+
+Three rules keep the record honest.
+
+1. Write what you are about to do before you do it. Store every identifier you will need to check the result, and the time of the request, before sending. A retry that looks the other system up again finds it already changed and concludes there was nothing to do.
+2. Decide only from what is written. Count the requests sent (before each send) and the answers read (after each valid answer). A closing state that means "nothing was there" is allowed only when the two counts are equal.
+3. Name a closing state by what was proven. Keep the "verified" time for the outcome the other system confirmed. Give every other closing state its own label and no verified time, so that no report can count it as proof.
+
+Plan the test with the design: a fake of the other system that applies the change and then fails the call.
+
 ## Self-Review
 
 After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
