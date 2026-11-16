@@ -14,6 +14,9 @@ Does the code actually do what the intent says it should?
 - Idempotency: what happens if this operation runs twice, or if a previous run crashed halfway? If the answer is "it depends on what state was left behind," there's a missing reconciliation step.
 - Concurrency: if multiple actors can touch the same mutable state (files, branches, shared data), is access serialized structurally (locks, sequential phases, exclusive ownership), or by conventions that won't hold?
 - Write skew: under snapshot isolation, two transactions that read the same state and insert different keys do not conflict. A fence on "update the latest row" does nothing when there is no row yet. Ask whether the first-of-a-kind case has a row that both writers always change, and whether a test holds every transaction open after its read until all have arrived.
+- For each call that changes something in another system, walk the lost answer: the change happened and the caller never read the reply. Read what the retry does. If the retry can close the work as "nothing to do", that is a finding.
+- For each closing state, name the reply that proves it. A state that closes without such a reply must say so in its name, and must not carry the same "verified" mark as one that has it.
+- When the other system keeps one status per object, an old status can confirm a new request. Evidence counts only when it is newer than a time the caller stored before sending.
 
 When you find a potential bug, trace the execution path. Don't just flag "this could be nil". Show the call chain that makes it nil.
 

@@ -13,6 +13,8 @@ skills:
     - tell the owner this PR is reviewed and green
     - say that none of the calls run inside a transaction
     - my change passes its folder tests, what else runs before I push
+  writing-plans:
+    - the plan has a step that deletes a record in another system
   ticket-pipeline:
     - run this ticket from discovery to a draft PR
     - which pipeline steps have evidence
@@ -58,6 +60,7 @@ skills:
     - review the new scanner, does the guard miss any form
     - the lint rule passed review, try to break it
     - my reading of the library says it is safe but a test fails
+    - the retry closed the work as nothing to do after a timeout
   how:
     - explain how this subsystem works before we change it
   test-driven-development:
@@ -66,3 +69,4 @@ skills:
     - the test reads the timestamp back through the same code that wrote it
     - two requests insert the first row at the same time
     - the test prints the count but asserts nothing
+    - the call timed out after the other system applied the change

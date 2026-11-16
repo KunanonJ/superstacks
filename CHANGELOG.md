@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.6.0] - 2026-11-16
+
+### Changed
+
+- `writing-plans`: a new section, "A call that changes another system". When a step changes something in another system, plan for the case where the change happened and the answer was never read. Write what you are about to do, with every identifier and the request time, before sending. Decide only from what is written: count requests sent and answers read, and allow a "nothing was there" closing state only when the counts are equal. Name each closing state by what was proven, and keep the "verified" time for the outcome the other system confirmed.
+- `interrogate` (rubric): reviewers walk the lost answer for each call that changes another system, name the reply that proves each closing state, and accept an old status as evidence only when it is newer than a time stored before sending.
+- `test-driven-development`: a new test shape, "The lost answer". The fake accepts the request, applies the change, then fails the call with a timeout; the test runs the retry and asserts the work is still open and waiting for proof.
+- `patches/*-v6.6.patch` document the edits to the vendored files; `sources.lock.json` dest hashes updated for the edited files.
+
 ## [6.5.0] - 2026-11-16
 
 ### Changed
