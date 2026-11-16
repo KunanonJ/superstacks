@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.6.1] - 2026-11-16
+
+### Fixed
+
+- `sources.lock.json`: the recorded `dest_sha256` hashes for `rules/safety-overrides.mdc`, `skills/ticket-pipeline/SKILL.md` and `skills/workflow-profile/SKILL.md` were stale. Those files were edited in 6.2.0 and 6.3.0 without their hashes being updated. The three hashes now match the files. The file text did not change.
+- A new test, `tests/test_lock_hashes.py`, computes the sha256 of every file listed in `dest_sha256` and fails with the name of each file whose recorded hash differs or that does not exist. Nothing checked these hashes before.
+
 ## [6.6.0] - 2026-11-16
 
 ### Changed
