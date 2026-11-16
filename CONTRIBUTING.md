@@ -7,8 +7,9 @@ Thanks for helping Superstacks stay small and installable.
 1. Use a virtualenv and `pip install -r requirements.txt`.
 2. Edit skills under `plugins/superstacks/skills/` or rules under `plugins/superstacks/rules/`.
 3. If you change a vendored file, regenerate the matching patch in `patches/` against the pinned SHA in `sources.lock.json`.
-4. Keep skill bodies product-neutral ("the model", "the agent"). Host names belong in install docs only.
-5. Pull requests from the owner's account are opened ready for review and merge by themselves when the required check passes. A pull request from anyone else is opened as a draft or ready, and waits for the owner (see below).
+4. If you change any file under `plugins/superstacks/`, update its entry in `dest_sha256` in `sources.lock.json`. `tests/test_lock_hashes.py` fails when a recorded hash differs from the file.
+5. Keep skill bodies product-neutral ("the model", "the agent"). Host names belong in install docs only.
+6. Pull requests from the owner's account are opened ready for review and merge by themselves when the required check passes. A pull request from anyone else is opened as a draft or ready, and waits for the owner (see below).
 
 ## How this repository is maintained
 

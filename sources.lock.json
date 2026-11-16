@@ -1,6 +1,6 @@
 {
   "plugin": "superstacks",
-  "version": "6.6.0",
+  "version": "6.6.1",
   "repository": "https://github.com/KunanonJ/superstacks",
   "sources": [
     {
@@ -197,9 +197,9 @@
     }
   },
   "dest_sha256": {
-    ".claude-plugin/plugin.json": "580a370e504f2cd2eb94509010e7402790ad66f9f424d58062da4c8a1184e750",
-    ".codex-plugin/plugin.json": "6c646d8044e9eb05b329c3ca8b2a06d345ecd8de72f4d7cd4427c1325bb90017",
-    ".cursor-plugin/plugin.json": "80ccc3720246ea277c63e0429cdda5281d9c8443762bd33e068fe42cc27b2dd6",
+    ".claude-plugin/plugin.json": "77c00d0a781aa2091895e7c07c37be4dfe49e65bc733c0c7660c37ee2862af8b",
+    ".codex-plugin/plugin.json": "49efbae2de0cf5c361079b83f2a77e12c8bf3a330a07045cc87d62a995fa1688",
+    ".cursor-plugin/plugin.json": "f2b04ce3896afa66b8c376c02eabe9701b4c652dadf635172383f023f3fe324f",
     "LICENSE": "7fce1ee5b8a12918fdc25342b1e8e348c1f7cf588cf6d9224767dd54468cfb3c",
     "README.md": "ab7388aab0b1caee9bec7f93c261d8fa206f28eda56ff0002ea3a7f5020eb340",
     "SECURITY.md": "dcd7e34aa0149adc62cfdcf790c84e4826bb40f7367592d72be30e4d61d0e772",
@@ -209,7 +209,7 @@
     "assets/icon.png": "ad000d2da8410a2a872dde538d1f530b65282ae40f05e36f34404beae9b6cbca",
     "assets/logo.png": "6a9e5351dce52ff43acbabcbedff83a5ba7db5a56b979d0af4e49eccd5b21e8b",
     "assets/logo.svg": "b2045b0f5afecd67cae659b2c6596d9534064b51a5c966f742bada80f7caee2f",
-    "rules/safety-overrides.mdc": "504db33ea40db0fdc3bf3696003237f63b8aad9d08f893d9a4cf2228726368cf",
+    "rules/safety-overrides.mdc": "d83213708a47caa07faa70609be1478c73890b614bbc6475875329f5e2d047a9",
     "skills/code-review/SKILL.md": "e311e375f3504094c195a25920138ac90fd01b047a1aa59319c73ded07358a2d",
     "skills/diagnosing-bugs/SKILL.md": "3cc67527b27218066fdce7754a7c9b8e1017714408b173ce5b9a1f0f1d19644e",
     "skills/diagnosing-bugs/scripts/hitl-loop.template.sh": "35103539fc36873eea36074769ad454f9379d6fc8b2dc0e26ce987fd3bfe5503",
@@ -230,9 +230,9 @@
     "skills/pr/SKILL.md": "7143c4b2097b7ba12aede755ef77ff3176b83ebcad9ba99843bd28e93e294220",
     "skills/test-driven-development/SKILL.md": "2d5e0740675b5703a025c41906f35bfe4bfe17cdeb560db1cccddd15606e7b5d",
     "skills/test-driven-development/writing-good-tests.md": "94ed93cf5645a3cba0f7063409d97e572141ab6d2f9d68c24d317f1f1e1f260f",
-    "skills/ticket-pipeline/SKILL.md": "b3f47277feef5b5892965a7bf3d3f84a35d884a4f4b33f2bcfef43014a05c5f9",
+    "skills/ticket-pipeline/SKILL.md": "97e7028f50ec6c674025ee960269e1fea7de26d95702b0821f2d82303b20a2a1",
     "skills/verification-before-completion/SKILL.md": "4e6f5bb1c7b8a10032f1bdb07029b616e2b0f6b7ec9b689526d949a0030e30f7",
-    "skills/workflow-profile/SKILL.md": "591dd658272c2ce60cf13c3ac8858b50e9548486069562e8ed21d51fc7b30190",
+    "skills/workflow-profile/SKILL.md": "9ba93278787a13d90f0e3031fe4264e479c9192c8f082f596f15be280bbfa887",
     "skills/writing-for-agents/SKILL-MECHANICS.md": "c768e6307c7c10728c401c213f2c4ba71c542127eeb7ad2956aabd15a0fa0059",
     "skills/writing-for-agents/SKILL.md": "93720a5d3f01458d5b165a3cf4fd83befc4c8ba5bcfb50552033c4146f392927",
     "skills/writing-plans/SKILL.md": "3bbf1ad449c65200e2d82ec1e8b63657f3d35d1b90d55b718919ef85e567d3c6"
